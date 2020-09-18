@@ -28,7 +28,7 @@ resource "google_compute_instance" "seed001" {
    }
  }
 
-metadata_startup_script = file("../bootstrap/initdm.sh")
+metadata_startup_script = file("/initdm.sh")
  metadata = {
    ssh-keys = "dmalicia:${file("/id_rsa.pub")}"
             }
