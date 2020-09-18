@@ -2,7 +2,7 @@ terraform {
   backend "gcs" { 
     bucket    = "dmustf"
     prefix    = "/dmus/seed-tf"
-    credentials = "/home/sandworm/unitydevops/dm-terraform/seed/creds.json"
+    credentials = "/tmp/creds.json"
   }
 }
 
