@@ -2,7 +2,6 @@ sudo apt-get update;
 sudo apt-get install -yq build-essential python-pip rsync software-properties-common apt-transport-https unzip;
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -;
 A=`lsb_release -cs`;
-echo "fim" >> /tmp/meio;
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $A stable";
 sleep 3
 sudo apt-get update
@@ -28,7 +27,9 @@ wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip /
 unzip /ngrok-stable-linux-amd64.zip 
 ./ngrok start atlantis --config /config.yml -log=/tmp/klog > /dev/null &
 wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb /
+sleep 10
 sudo dpkg -i /puppetlabs-release-trusty.deb
+echo "instalou?" >> /tmp/meio;
 sudo apt-get update
 sudo apt-get install puppetmaster-passenger
 sudo puppet master
