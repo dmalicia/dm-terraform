@@ -8,4 +8,4 @@ projects:
   - name: seed
     dir: seed
     autoplan: 
-      when_modified: ["../seed/*.terraform", "*.tf", "*.tfvars"]
+      when_modified: ["../seed/*.terraform", "../seed/bootstrap/*", "*.tf", "*.tfvars"]
