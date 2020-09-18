@@ -6,7 +6,7 @@ repos:
 - id: /.*/
 
   # apply_requirements sets the Apply Requirements for all repos that match.
-  #apply_requirements: [approved, mergeable]
+  apply_requirements: [mergeable]
 
   # workflow sets the workflow for all repos that match.
   # This workflow must be defined in the workflows section.
