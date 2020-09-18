@@ -31,5 +31,5 @@ sleep 10
 sudo dpkg -i /puppetlabs-release-trusty.deb
 echo "instalou?" >> /tmp/meio;
 sudo apt-get update
-sudo apt-get install puppetmaster-passenger
+sudo apt-get install puppetmaster-passenger -yq
 sudo puppet master
