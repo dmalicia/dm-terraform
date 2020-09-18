@@ -18,7 +18,7 @@ resource "google_compute_address" "static" {
 
 // A single Compute Engine instance
 resource "google_compute_instance" "seed001" {
- name         = "dmalicia-vm-${random_id.instance_id.hex}"
+ name         = "dmus-seed001-${random_id.instance_id.hex}"
  machine_type = "f1-micro"
  zone         = "us-west1-a"
 
@@ -28,9 +28,7 @@ resource "google_compute_instance" "seed001" {
    }
  }
 
-// Make sure flask is installed on all new instances for later steps
-//   metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install flask"
-   metadata_startup_script = file("/tmp/controllerbootstrap.sh")
+metadata_startup_script = file("/tmp/controllerbootstrap.sh")
  metadata = {
    ssh-keys = "dmalicia:${file("/tmp/id_rsa.pub")}"
             }

@@ -1,14 +1,13 @@
 version: 3
 automerge: false
 projects: 
-  - name: seed
-    dir: seed
-    apply_requirements: ["approved"]
-    autoplan: 
-      when_modified: ["../seed/*.terraform", "*.tf", "*.tfvars"]
   - name: bucket
     dir: bucket
     apply_requirements: ["approved"]
     autoplan:
       when_modified: ["../bucket/*.terraform", "*.tf", "*.tfvars"]
-
+  - name: seed
+    dir: seed
+    apply_requirements: ["approved"]
+    autoplan: 
+      when_modified: ["../seed/*.terraform", "*.tf", "*.tfvars"]
