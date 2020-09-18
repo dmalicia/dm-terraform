@@ -27,3 +27,8 @@ EOF
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip /
 unzip /ngrok-stable-linux-amd64.zip 
 ./ngrok start atlantis --config /config.yml -log=/tmp/klog > /dev/null &
+wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb /
+sudo dpkg -i /puppetlabs-release-trusty.deb
+sudo apt-get update
+sudo apt-get install puppetmaster-passenger
+sudo puppet master
