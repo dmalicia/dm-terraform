@@ -1,6 +1,6 @@
 // Configure the Google Cloud provider
 provider "google" {
- credentials = file("CREDENTIALS_FILE.json")
+ credentials = file("/tmp/CREDENTIALS_FILE.json")
  project     = "heroic-muse-289316"
  region      = "us-west1"
 }
@@ -34,7 +34,7 @@ resource "google_compute_instance" "controller001" {
 
 // Make sure flask is installed on all new instances for later steps
 //   metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python-pip rsync; pip install flask"
-   metadata_startup_script = file("/home/sandworm/unitydevops/terraform/controllerbootstrap.sh")
+   metadata_startup_script = file("/tmp/controllerbootstrap.sh")
  metadata = {
    ssh-keys = "dmalicia:${file("~/.ssh/id_rsa.pub")}"
             }
@@ -61,7 +61,7 @@ resource "google_compute_instance" "client001" {
  }
 
 // Make sure flask is installed on all new instances for later steps
-   metadata_startup_script = file("/home/sandworm/unitydevops/terraform/bootstrap.sh")
+   metadata_startup_script = file("/tmp/bootstrap.sh")
  metadata = {
    ssh-keys = "dmalicia:${file("~/.ssh/id_rsa.pub")}"
             }
