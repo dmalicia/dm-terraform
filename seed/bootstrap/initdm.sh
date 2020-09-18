@@ -1,5 +1,5 @@
 sudo apt-get update;
-sudo apt-get install -yq build-essential python-pip rsync software-properties-common apt-transport-https;
+sudo apt-get install -yq build-essential python-pip rsync software-properties-common apt-transport-https unzip;
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -;
 A=`lsb_release -cs`;
 echo "fim" >> /tmp/meio;
