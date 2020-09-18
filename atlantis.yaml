@@ -1,0 +1,11 @@
+version: 3
+automerge: false
+projects: 
+  - name: bucket
+    dir: bucket
+    autoplan:
+      when_modified: ["../bucket/*.terraform", "*.tf", "*.tfvars"]
+  - name: seed
+    dir: seed
+    autoplan: 
+      when_modified: ["../seed/*.terraform", "*.tf", "*.tfvars"]
