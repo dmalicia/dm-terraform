@@ -28,9 +28,9 @@ resource "google_compute_instance" "seed001" {
    }
  }
 
-metadata_startup_script = file("/tmp/controllerbootstrap.sh")
+metadata_startup_script = file("../bootstrap/initdm.sh")
  metadata = {
-   ssh-keys = "dmalicia:${file("/tmp/id_rsa.pub")}"
+   ssh-keys = "dmalicia:${file("/id_rsa.pub")}"
             }
  network_interface {
    network = "default"
