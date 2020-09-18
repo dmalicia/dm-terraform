@@ -18,7 +18,7 @@ resource "google_compute_address" "static" {
 
 // A single Compute Engine instance
 resource "google_compute_instance" "seed001" {
- name         = "dmus-seed-${random_id.instance_id.hex}"
+ name         = "dm-seed-${random_id.instance_id.hex}"
  machine_type = "f1-micro"
  zone         = "us-west1-a"
 
