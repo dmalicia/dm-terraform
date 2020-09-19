@@ -6,6 +6,10 @@ terraform {
   }
 }
 
+data "google_secret_manager_secret_version" "basic" {
+  secret = "creds"
+}
+
 // Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
  byte_length = 8
