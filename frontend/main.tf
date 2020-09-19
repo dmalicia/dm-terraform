@@ -42,7 +42,7 @@ metadata_startup_script = file("/puppet.sh")
    network = "default"
 
    access_config {
-     nat_ip = google_compute_address.static.address
+     nat_ip = google_compute_address.static[count.index].address
    }
  }
 }
