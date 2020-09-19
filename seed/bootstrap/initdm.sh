@@ -10,10 +10,7 @@ sudo apt-get update
 sudo apt-get -yq install docker-ce docker-ce-cli containerd.io;
 git clone https://github.com/dmalicia/dm-terraform.git /usr/local/share/dm-terraform/
 sleep 10;
-echo "sleep 10" >> /tmp/meio;
 docker run --name atlantis -d -p 4141:4141 -v /usr/local/share/dm-terraform:/usr/local/share/dm-terraform runatlantis/atlantis server --gh-user=dmalicia --gh-token=c4d5e72d0ce72e6dc95a966f5cdee528f8115843 --repo-allowlist github.com/dmalicia/dm-terraform --repo-config=/usr/local/share/dm-terraform/seed/bootstrap/repos.yaml
-echo $token
-echo "sleep docker is up?" >> /tmp/meio;
 docker restart atlantis
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip /
 unzip /ngrok-stable-linux-amd64.zip 
@@ -21,7 +18,6 @@ unzip /ngrok-stable-linux-amd64.zip
 wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb /
 sleep 10
 sudo dpkg -i /puppetlabs-release-trusty.deb
-echo "instalou?" >> /tmp/meio;
 sudo apt-get update
 sudo apt-get install puppetmaster-passenger -yq
 #sudo puppet master
