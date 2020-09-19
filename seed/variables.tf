@@ -26,3 +26,10 @@ variable "scbootstrap" {
   type       = string
   default    = "/usr/local/share/dm-terraform/seed/bootstrap/"
 }
+
+variable "gcp_zone" {
+  type      = map
+  default = {
+    amer = [ "us-west1-a" ]
+  }
+}
