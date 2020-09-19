@@ -18,7 +18,7 @@ resource "google_compute_address" "static" {
 
 // A single Compute Engine instance
 resource "google_compute_instance" "frontend" {
- name         = "dm-frontend2-${random_id.instance_id.hex}"
+ name         = "dm-frontend-${random_id.instance_id.hex}"
  machine_type = "f1-micro"
  zone         = "us-west1-a"
 
@@ -28,7 +28,7 @@ resource "google_compute_instance" "frontend" {
    }
  }
 
-metadata_startup_script = file("/initdm.sh")
+metadata_startup_script = file("./puppet.sh")
  metadata = {
    ssh-keys = "dmalicia:${file("/id_rsa.pub")}"
             }
