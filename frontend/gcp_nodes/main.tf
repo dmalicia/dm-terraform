@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" { 
     bucket    = "dmustf"
-    prefix    = "/dmus/frontend-tf"
+    prefix    = "/dmus/frontend-gcp-nodes-tf"
     credentials = "/creds.json"
   }
 }
@@ -16,7 +16,7 @@ resource "random_id" "instance_id" {
 }
 
 variable "node_count" {
-  default = "2"
+  default = "0"
  }
 
 // Resource for ips
