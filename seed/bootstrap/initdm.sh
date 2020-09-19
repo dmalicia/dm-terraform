@@ -1,5 +1,5 @@
 sudo apt-get update;
-sleep 120
+sleep 600
 # gpg import in the seed to decrypt creds
 sudo apt-get install -yq build-essential python-pip rsync software-properties-common apt-transport-https unzip;
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -;
@@ -22,4 +22,5 @@ sudo apt-get update
 sudo apt-get install puppetmaster-passenger -yq
 #sudo puppet master
 gpg --decrypt /usr/local/share/dm-terraform/seed/bootstrap/ecreds.json.gpg > /usr/local/share/dm-terraform/seed/bootstrap/creds.json
+docker cp /usr/local/share/dm-terraform/seed/bootstrap/creds.json atlantis:/
 docker restart atlantis
