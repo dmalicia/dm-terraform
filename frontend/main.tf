@@ -12,7 +12,7 @@ resource "random_id" "instance_id" {
 }
 
 variable "node_count" {
-  default = "2"
+  default = "1"
  }
 
 // Resource for ips
