@@ -23,4 +23,4 @@ cat >> /puppet.conf <<EOF
 server = 35.233.219.1
 EOF
 cp /puppet.conf /etc/puppet/puppet.conf
-sudo service restart puppet
+sudo service puppet restart
