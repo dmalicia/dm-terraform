@@ -15,17 +15,9 @@ docker run --name atlantis -d -p 4141:4141 -v /usr/local/share/dm-terraform:/usr
 echo $token
 echo "sleep docker is up?" >> /tmp/meio;
 docker restart atlantis
-cat >> /config.yml <<EOF
-web_addr: localhost:41414
-tunnels:
-  atlantis:
-    addr: 4141
-    bind_tls: true
-    proto: http
-EOF
 wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip /
 unzip /ngrok-stable-linux-amd64.zip 
-./ngrok start atlantis --config /config.yml -log=/tmp/klog > /dev/null &
+./ngrok start atlantis --config /usr/local/share/dm-terraform/seed/bootstrap/config.yml -log=/tmp/klog > /dev/null &
 wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb /
 sleep 10
 sudo dpkg -i /puppetlabs-release-trusty.deb
