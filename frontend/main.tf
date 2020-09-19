@@ -17,7 +17,7 @@ variable "node_count" {
 
 // Resource for ips
 resource "google_compute_address" "static" {
-  name = "dm-frontend-${random_id.instance_id.hex}"
+  name = "dm-frontend-${count.index}${random_id.instance_id.hex}"
 }
 
 // A single Compute Engine instance
