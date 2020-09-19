@@ -2,7 +2,7 @@ terraform {
   backend "gcs" { 
     bucket    = "dmustf"
     prefix    = "/dmus/frontend-tf"
-    credentials = "/tmp/creds.json"
+    credentials = "${var.scpath}/creds.json"
   }
 }
 
@@ -26,7 +26,7 @@ resource "google_compute_address" "static" {
 }
 
 // A single Compute Engine instance
-resource "google_compute_instance" "frontendn" {
+resource "google_compute_instance" "frontend" {
  count        = var.node_count
  name         = "dm-frontend-${count.index}${random_id.instance_id.hex}"
  machine_type = "f1-micro"
@@ -38,10 +38,11 @@ resource "google_compute_instance" "frontendn" {
    }
  }
 
-metadata_startup_script = file("/puppet.sh")
+metadata_startup_script = file("${var.scbootstrap}/puppet.sh")
  metadata = {
-   ssh-keys = "dmalicia:${file("/id_rsa.pub")}"
+   ssh-keys = "dmalicia:${file("${var.scbootstrap}/id_rsa.pub")}"
             }
+
  network_interface {
    network = "default"
 
@@ -51,7 +52,7 @@ metadata_startup_script = file("/puppet.sh")
  }
 }
 
-resource "google_compute_firewall" "frontendn" {
+resource "google_compute_firewall" "frontend" {
  name    = "frontend-firewall"
  network = "default"
 

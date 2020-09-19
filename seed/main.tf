@@ -2,7 +2,7 @@ terraform {
   backend "gcs" { 
     bucket    = "dmustf"
     prefix    = "/dmus/seed-tf"
-    credentials = "/tmp/creds.json"
+    credentials = "${var.scbootstrap}/creds.json"
   }
 }
 

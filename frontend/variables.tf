@@ -20,3 +20,15 @@ variable "storage-class" {
   type        = string
   description = "The storage class of the Storage Bucket to create"
 }
+
+# Source code folder
+variable "scbootstrap" {
+  type       = string
+  default    = "/usr/local/share/dm-terraform/frontend/bootstrap/"
+}
+
+# Seed Creds
+variable "scpath" {
+  type       = string
+  default    = "/usr/local/share/dm-terraform/seed/bootstrap/"
+}
