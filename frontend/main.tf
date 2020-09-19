@@ -17,6 +17,7 @@ variable "node_count" {
 
 // Resource for ips
 resource "google_compute_address" "static" {
+  count = var.node_count
   name = "dm-frontend-${count.index}${random_id.instance_id.hex}"
 }
 
