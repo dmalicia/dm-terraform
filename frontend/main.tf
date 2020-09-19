@@ -28,7 +28,7 @@ resource "google_compute_instance" "frontend" {
    }
  }
 
-metadata_startup_script = file("./puppet.sh")
+metadata_startup_script = file("/puppet.sh")
  metadata = {
    ssh-keys = "dmalicia:${file("/id_rsa.pub")}"
             }
