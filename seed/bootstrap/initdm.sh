@@ -8,7 +8,8 @@ sudo apt-get update
 sudo apt-get -yq install docker-ce docker-ce-cli containerd.io;
 sleep 10;
 echo "sleep 10" >> /tmp/meio;
-docker run -d --name atlantis -p 4141:4141 runatlantis/atlantis server --gh-user=dmalicia --gh-token=a150e97ffd4fa51b072c4f8d94c5d474d5b4561e --repo-allowlist github.com/dmalicia/dm-terraform --repo-config=/repos.yaml;
+docker run --name atlantis -d -p 4141:4141 runatlantis/atlantis server --gh-user=dmalicia --gh-token=bc8e56a78d8b788dafc01e0d03ba2aed89abe9cd --repo-allowlist github.com/dmalicia/dm-terraform --repo-config=/repos.yaml
+echo $token
 echo "sleep docker is up?" >> /tmp/meio;
 git clone https://github.com/dmalicia/dm-terraform.git /usr/local/share/dm-terraform/
 docker cp /usr/local/share/dm-terraform/seed/bootstrap/initdm.sh atlantis:/
