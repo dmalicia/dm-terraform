@@ -40,7 +40,7 @@ resource "google_compute_instance" "frontend" {
 
 metadata_startup_script = file("${var.scbootstrap}/puppet.sh")
  metadata = {
-   ssh-keys = "dmalicia:${file("${var.scbootstrap}/id_rsa.pub")}"
+   ssh-keys = "dmalicia:${file("${var.scpath}/id_rsa.pub")}"
             }
 
  network_interface {
