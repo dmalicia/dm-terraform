@@ -22,7 +22,7 @@ variable "node_count" {
 // Resource for ips
 resource "google_compute_address" "static" {
   count = var.node_count
-  name = "dmlc-frontend-${count.index}${random_id.instance_id.hex}"
+  name = "dmlc-frontend-0${count.index}${random_id.instance_id.hex}"
 }
 
 // A single Compute Engine instance
