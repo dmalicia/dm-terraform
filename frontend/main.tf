@@ -13,7 +13,7 @@ resource "random_id" "instance_id" {
 
 // Resource for ips
 resource "google_compute_address" "static" {
-  name = "seed"
+  name = "dm-frontend-${random_id.instance_id.hex}"
 }
 
 // A single Compute Engine instance
