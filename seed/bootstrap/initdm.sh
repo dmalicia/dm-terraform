@@ -1,4 +1,6 @@
 sudo apt-get update;
+sleep 120
+# gpg import in the seed to decrypt creds
 sudo apt-get install -yq build-essential python-pip rsync software-properties-common apt-transport-https unzip;
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -;
 A=`lsb_release -cs`;
@@ -6,14 +8,12 @@ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debi
 sleep 3
 sudo apt-get update
 sudo apt-get -yq install docker-ce docker-ce-cli containerd.io;
+git clone https://github.com/dmalicia/dm-terraform.git /usr/local/share/dm-terraform/
 sleep 10;
 echo "sleep 10" >> /tmp/meio;
-docker run --name atlantis -d -p 4141:4141 runatlantis/atlantis server --gh-user=dmalicia --gh-token=bc8e56a78d8b788dafc01e0d03ba2aed89abe9cd --repo-allowlist github.com/dmalicia/dm-terraform --repo-config=/repos.yaml
+docker run --name atlantis -d -p 4141:4141 -v /usr/local/share/dm-terraform:/usr/local/share/dm-terraform runatlantis/atlantis server --gh-user=dmalicia --gh-token=c4d5e72d0ce72e6dc95a966f5cdee528f8115843 --repo-allowlist github.com/dmalicia/dm-terraform --repo-config=/usr/local/share/dm-terraform/seed/bootstrap/repos.yaml
 echo $token
 echo "sleep docker is up?" >> /tmp/meio;
-git clone https://github.com/dmalicia/dm-terraform.git /usr/local/share/dm-terraform/
-docker cp /usr/local/share/dm-terraform/seed/bootstrap/initdm.sh atlantis:/
-docker cp /usr/local/share/dm-terraform/seed/bootstrap/repos.yaml atlantis:/
 docker restart atlantis
 cat >> /config.yml <<EOF
 web_addr: localhost:41414
@@ -33,4 +33,6 @@ echo "instalou?" >> /tmp/meio;
 sudo apt-get update
 sudo apt-get install puppetmaster-passenger -yq
 #sudo puppet master
-docker cp /usr/local/share/dm-terraform/seed/creds.json atlantis:/tmp
+gpg --decrypt /usr/local/share/dm-terraform/seed/bootstrap/ecreds.json.gpg > /usr/local/share/dm-terraform/seed/bootstrap/creds.json
+docker cp /usr/local/share/dm-terraform/seed/bootstrap/creds.json atlantis:/tmp
+docker restart atlantis
