@@ -2,7 +2,7 @@ terraform {
   backend "gcs" { 
     bucket    = "dmustf"
     prefix    = "/dmus/seed-tf"
-    credentials = "/tmp/creds.json"
+    credentials = "/creds.json"
   }
 }
 
@@ -28,9 +28,9 @@ resource "google_compute_instance" "seed001" {
    }
  }
 
-metadata_startup_script = file("/initdm.sh")
+metadata_startup_script = file("${var.scbootstrap}/initdm.sh")
  metadata = {
-   ssh-keys = "dmalicia:${file("/id_rsa.pub")}"
+   ssh-keys = "dmalicia:${file("${var.scbootstrap}/id_rsa.pub")}"
             }
  network_interface {
    network = "default"

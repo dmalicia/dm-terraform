@@ -9,3 +9,7 @@ projects:
     dir: seed
     autoplan: 
       when_modified: ["../seed/*.terraform", "../seed/bootstrap/*", "*.tf", "*.tfvars"]
+  - name: frontend
+    dir: frontend 
+    autoplan:
+      when_modified: ["../frontend/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]

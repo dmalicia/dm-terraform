@@ -1,0 +1,6 @@
+web_addr: localhost:41414
+tunnels:
+  atlantis:
+    addr: 4141
+    bind_tls: true
+    proto: http
