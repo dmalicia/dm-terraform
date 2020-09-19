@@ -8,21 +8,19 @@ sudo apt-get update
 sudo apt-get -yq install docker-ce docker-ce-cli containerd.io;
 sleep 10;
 echo "sleep 10" >> /tmp/meio;
-
-echo "sleep docker is up?" >> /tmp/meio;
 git clone https://github.com/dmalicia/dm-terraform.git /usr/local/share/dm-terraform/
-cat >> /puppet.conf <<EOF
-[agent]
-server = 35.233.219.1
-EOF
 wget https://apt.puppetlabs.com/puppetlabs-release-trusty.deb /
 sleep 10
 sudo dpkg -i /puppetlabs-release-trusty.deb
 echo "instalou?" >> /tmp/meio;
 sudo apt-get update
 sudo apt-get install puppet -yq
-cat >> /etc/default/puppet.conf <<EOF
+cat >> /etc/default/puppet <<EOF
 START=yes
 EOF
+cat >> /puppet.conf <<EOF
+[agent]
+server = 35.233.219.1
+EOF
 cp /puppet.conf /etc/puppet/puppet.conf
-sudo service start
+sudo service restart puppet
