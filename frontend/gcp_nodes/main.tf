@@ -1,7 +1,7 @@
 terraform {
   backend "gcs" { 
     bucket    = "dmustf"
-    prefix    = "/dmus/frontend-tf"
+    prefix    = "/dmus/frontend-gcp-nodes-tf"
     credentials = "/creds.json"
   }
 }
