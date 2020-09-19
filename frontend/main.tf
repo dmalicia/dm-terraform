@@ -17,7 +17,7 @@ resource "google_compute_address" "static" {
 }
 
 // A single Compute Engine instance
-resource "google_compute_instance" "frontend" {
+resource "google_compute_instance" "frontend-${random_id.instance_id.hex}" {
  count        = "2" 
  name         = "dm-frontend-${random_id.instance_id.hex}"
  machine_type = "f1-micro"
