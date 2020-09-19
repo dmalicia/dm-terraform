@@ -13,4 +13,4 @@ projects:
     dir: frontend/gcp_nodes
     autoplan:
       when_modified: ["../frontend/gcp_nodes/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
-      #    workspace: amer
+    workspace: amer
