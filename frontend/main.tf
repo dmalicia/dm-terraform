@@ -16,7 +16,7 @@ resource "random_id" "instance_id" {
 }
 
 variable "node_count" {
-  default = "0"
+  default = "2"
  }
 
 // Resource for ips
@@ -28,7 +28,7 @@ resource "google_compute_address" "static" {
 // A single Compute Engine instance
 resource "google_compute_instance" "frontend" {
  count        = var.node_count
- name         = "dm-frontend-${count.index}${random_id.instance_id.hex}"
+ name         = "dmlc-frontend-${count.index}${random_id.instance_id.hex}"
  machine_type = "f1-micro"
  zone         = "us-west1-a"
 

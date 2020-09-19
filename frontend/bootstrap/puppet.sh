@@ -1,4 +1,5 @@
 sudo apt-get update;
+rm -rf /etc/motd
 sudo apt-get install -yq build-essential python-pip rsync software-properties-common apt-transport-https unzip;
 curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -;
 A=`lsb_release -cs`;
@@ -20,7 +21,9 @@ START=yes
 EOF
 cat >> /puppet.conf <<EOF
 [agent]
-server = 35.233.219.1
+server = seed.dmlc.pw
 EOF
+cat >>
 cp /puppet.conf /etc/puppet/puppet.conf
-sudo service restart puppet
+sudo service stop puppet
+echo "*/5 * * * * root puppet agent -t" >> /etc/crontab
