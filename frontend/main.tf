@@ -43,7 +43,7 @@ metadata_startup_script = file("/puppet.sh")
 }
 
 output "controller" {
-  value = google_compute_instance.frontend.network_interface.0.access_config.0.nat_ip
+  value = google_compute_instance.frontend.0.network_interface.0.access_config.0.nat_ip
 }
 
 resource "google_compute_firewall" "frontend" {
