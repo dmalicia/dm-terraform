@@ -23,7 +23,6 @@ cat >> /puppet.conf <<EOF
 [agent]
 server = seed.dmlc.pw
 EOF
-cat >>
 cp /puppet.conf /etc/puppet/puppet.conf
 sudo service stop puppet
 echo "*/5 * * * * root puppet agent -t" >> /etc/crontab
