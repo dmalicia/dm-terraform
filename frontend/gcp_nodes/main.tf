@@ -49,7 +49,7 @@ metadata_startup_script = file("${var.scbootstrap}/puppet.sh")
 
 resource "google_dns_record_set" "frontend" {
   count = "${var.nodes[terraform.workspace]}"
-  name = "frontend${count.inde}.${terraform.workspace}.${var.dns_name}"
+  name = "frontend${count.index}.${terraform.workspace}.${var.dns_name}"
   type = "A"
   ttl  = 300
 
