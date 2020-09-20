@@ -13,10 +13,10 @@ variable "gcp_auth_file" {
   type        = string
   description = "GCP authentication file"
 }
-variable "bucket-name" {
+variable "bucket_name" {
   default     = "dmustf"
 }
-variable "storage-class" {
+variable "storage_class" {
   type        = string
   description = "The storage class of the Storage Bucket to create"
 }
@@ -31,6 +31,17 @@ variable "scbootstrap" {
 variable "scpath" {
   type       = string
   default    = "/usr/local/share/dm-terraform/seed/bootstrap/"
+}
+
+# define dns
+variable "dns_name" {
+  type        = string
+  description = "The name of the DNS"
+}
+# define domain
+variable "dns_domain" {
+  type        = string
+  description = "The domain of the DNS"
 }
 
 variable "zones" {
@@ -54,8 +65,8 @@ variable "regions" {
 variable "nodes" {
   type      = map
   default = {
-    amer = "0"
-    euro = "0"
-    asia = "0"
+    amer = "1"
+    euro = "1"
+    asia = "1"
   }
 }
