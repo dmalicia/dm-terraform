@@ -37,5 +37,6 @@ variable "nodes" {
   type      = map
   default = {
     amer = "2"
+    euro = "1"
   }
 }

@@ -6,31 +6,25 @@ terraform {
   }
 }
 
+// just a test to store secret / I will store gh token
 data "google_secret_manager_secret_version" "basic" {
   secret = "creds"
 }
 
-// Terraform plugin for creating random ids
 resource "random_id" "instance_id" {
  byte_length = 8
 }
 
-variable "node_count" {
-  default = "0"
- }
-
-// Resource for ips
 resource "google_compute_address" "static" {
   count = "${var.nodes[terraform.workspace]}"
-  name = "dmlc-frontend-0${count.index}${random_id.instance_id.hex}"
+  name = "dmlc-frontend-${count.index}${random_id.instance_id.hex}"
 }
 
-// A single Compute Engine instance
 resource "google_compute_instance" "frontend" {
  count = "${var.nodes[terraform.workspace]}"
- name         = "dmlc-frontend-${count.index}${random_id.instance_id.hex}"
+ name         = "dmlc-frontend-${terraform.workspace}-${count.index}"
  machine_type = "f1-micro"
- zone         = "us-west1-a"
+ zone         = "{var.zones[terraform.workspace]" 
 
  boot_disk {
    initialize_params {
