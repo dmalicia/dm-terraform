@@ -35,7 +35,7 @@ resource "google_compute_target_pool" "asg" {
 
 # Create a Google Compute Http Health Check
 resource "google_compute_http_health_check" "asg" {
-  name                 = "asg-health-check"
+  name                 = "asg-health-check-${var.regions[count.index][terraform.workspace]}"
   request_path         = "/"
   check_interval_sec   = 30
   timeout_sec          = 3
@@ -49,7 +49,7 @@ resource "google_compute_http_health_check" "asg" {
 # Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
   count = var.asg_per_region[terraform.workspace]
-  name = "asg-group-manager-${terraform.workspace}"
+  name = "asg-group-manager-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
   zone = var.zones[terraform.workspace][count.index]
   version { 
   instance_template  = "${google_compute_instance_template.asg.self_link}"
@@ -60,7 +60,7 @@ resource "google_compute_instance_group_manager" "asg" {
 
 resource "google_compute_autoscaler" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name   = "asg-${terraform.workspace}"
+  name   = "asg-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
   zone   = "var.zones${terraform.workspace}"
   target = google_compute_instance_group_manager.asg[count.index].id
 
