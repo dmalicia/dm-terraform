@@ -36,6 +36,6 @@ variable "scpath" {
 variable "nodes" {
   type      = map
   default = {
-    amer = "0"
+    amer = "2"
   }
 }
