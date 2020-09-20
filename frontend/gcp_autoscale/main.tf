@@ -48,7 +48,7 @@ resource "google_compute_http_health_check" "asg" {
 # Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
   name = "asg-group-manager"
-  zone = "us-east1-b"
+  zone = "us-central1-c"
   version { 
   instance_template  = "${google_compute_instance_template.asg.self_link}"
   }
@@ -58,16 +58,16 @@ resource "google_compute_instance_group_manager" "asg" {
 
 resource "google_compute_autoscaler" "asg" {
   name   = "my-autoscaler"
-  zone   = "us-central1-f"
+  zone   = "us-central1-c"
   target = google_compute_instance_group_manager.asg.id
 
   autoscaling_policy {
-    max_replicas    = 5
+    max_replicas    = 2
     min_replicas    = 1
     cooldown_period = 60
 
-    metric {
-      name                       = "pubsub.googleapis.com/subscription/num_undelivered_messages"
+    cpu_utilization {
+      target = 0.5
     }
   }
 }
@@ -77,14 +77,19 @@ resource "google_compute_instance_template" "asg" {
   machine_type  = "f1-micro"
 
   disk {
-    source_image = "ubuntu-1604-lts"
+    source_image = "debian-cloud/debian-9"
   }
 
   network_interface {
     network = "default"
   }
 
-  metadata_startup_script = "echo 'Hello, World' > index.html ; nohup busybox httpd -f -p ${var.server_port} &"
+  metadata_startup_script = file("${var.scbootstrap}/puppet.sh")
+  metadata = {
+    ssh-keys = "dmalicia:${file("${var.scpath}/id_rsa.pub")}"
+             }
+
+
 }
 
 #---------------------------------------------------------------------
