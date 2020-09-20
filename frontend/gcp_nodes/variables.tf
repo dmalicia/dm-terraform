@@ -33,9 +33,29 @@ variable "scpath" {
   default    = "/usr/local/share/dm-terraform/seed/bootstrap/"
 }
 
+variable "zones" {
+  type      = map
+  default = {
+    amer = "us-east1-b"
+    euro = "europe-west4-a"
+    asia = "australia-southeast1-b"
+}
+}
+
+variable "regions" {
+  type      = map
+  default = {
+    amer = "us-east1"
+    euro = "europe-west4"
+    asia = "australia-southeast1"
+}
+}
+
 variable "nodes" {
   type      = map
   default = {
-    amer = "2"
+    amer = "1"
+    euro = "1"
+    asia = "1"
   }
 }
