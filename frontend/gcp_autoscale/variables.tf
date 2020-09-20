@@ -36,7 +36,7 @@ variable "scpath" {
 variable "zones" {
   type      = map
   default = {
-    amer = "us-east1-b"
+    amer = "us-west1-b"
     euro = "europe-west4-a"
     asia = "australia-southeast1-b"
 }
