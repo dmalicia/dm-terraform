@@ -42,6 +42,15 @@ variable "zones" {
 }
 }
 
+variable "regions" {
+  type      = map
+  default = {
+    amer = "us-east1"
+    euro = "europe-west4"
+    asia = "australia-southeast1"
+}
+}
+
 variable "nodes" {
   type      = map
   default = {
