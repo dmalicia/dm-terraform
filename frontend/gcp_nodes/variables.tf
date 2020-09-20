@@ -32,3 +32,10 @@ variable "scpath" {
   type       = string
   default    = "/usr/local/share/dm-terraform/seed/bootstrap/"
 }
+
+variable "nodes" {
+  type      = map
+  default = {
+    amer = "2"
+  }
+}
