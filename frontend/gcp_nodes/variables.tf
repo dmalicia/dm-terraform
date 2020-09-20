@@ -47,26 +47,26 @@ variable "dns_domain" {
 variable "zones" {
   type      = map
   default = {
-    amer = "us-east1-b"
-    euro = "europe-west4-a"
-    asia = "australia-southeast1-b"
+    amer = [ "us-east1-b", "us-central-1c" ]
+    euro = [ "europe-west4-a", "europe-north1-a" ] 
+    asia = [ "australia-southeast1-b", "asia-northeast1-b" ] 
 }
 }
 
 variable "regions" {
   type      = map
   default = {
-    amer = "us-east1"
-    euro = "europe-west4"
-    asia = "australia-southeast1"
+    amer = [ "us-east1", "us-central1" ]
+    euro = [ "europe-west4", "europe-north1-a" ] 
+    asia = [ "australia-southeast1", "asia-northeast" ]
 }
 }
 
 variable "nodes" {
   type      = map
   default = {
-    amer = "0"
-    euro = "0"
-    asia = "3"
+    amer = "2"
+    euro = "2"
+    asia = "2"
   }
 }

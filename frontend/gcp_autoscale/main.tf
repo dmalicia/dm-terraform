@@ -21,7 +21,8 @@ resource "google_compute_address" "asg" {
 
 # Create a Google Compute Forwarding Rule
 resource "google_compute_forwarding_rule" "asg" {
-  name       = "asg-forwarding-rule"
+  count      = var.asg_per_region[terraform.workspace]
+  name       = "asg-forwarding-rule${var.regions[count.index][terraform.workspace]}"
   target     = "${google_compute_target_pool.asg.self_link}"
   port_range = "80"
   ip_address = "${google_compute_address.asg.address}"
@@ -47,8 +48,9 @@ resource "google_compute_http_health_check" "asg" {
 
 # Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
+  count = var.asg_per_region[terraform.workspace]
   name = "asg-group-manager-${terraform.workspace}"
-  zone = "us-central1-c"
+  zone = var.zones[terraform.workspace][count.index]
   version { 
   instance_template  = "${google_compute_instance_template.asg.self_link}"
   }
@@ -57,9 +59,10 @@ resource "google_compute_instance_group_manager" "asg" {
 }
 
 resource "google_compute_autoscaler" "asg" {
+  count  = var.asg_per_region[terraform.workspace]
   name   = "asg-${terraform.workspace}"
-  zone   = "us-central1-c"
-  target = google_compute_instance_group_manager.asg.id
+  zone   = "var.zones${terraform.workspace}"
+  target = google_compute_instance_group_manager.asg[count.index].id
 
   autoscaling_policy {
     max_replicas    = 2
