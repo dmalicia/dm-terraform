@@ -50,6 +50,7 @@ resource "google_compute_http_health_check" "asg" {
 
 # Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
+
   count = var.asg_per_region[terraform.workspace]
   name = "asg-group-manager-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
   zone = var.zones[terraform.workspace][count.index]
@@ -65,6 +66,7 @@ resource "google_compute_autoscaler" "asg" {
   name   = "asg-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
   zone   = "var.zones${terraform.workspace}"
   target = google_compute_instance_group_manager.asg[count.index].id
+
 
   autoscaling_policy {
     max_replicas    = 2

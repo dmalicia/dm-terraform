@@ -39,6 +39,7 @@ variable "zones" {
     amer = [ "us-central1-c", "us-east1-b" ] 
     euro = [ "europe-west4-a" ]
     asia = [ "australia-southeast1-b" ]
+
 }
 }
 
