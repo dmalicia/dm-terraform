@@ -18,14 +18,14 @@ resource "random_id" "instance_id" {
 resource "google_compute_address" "static" {
   count = "${var.nodes[terraform.workspace]}"
   name = "dmlc-frontend-${count.index}${random_id.instance_id.hex}"
-  region = var.regions[terraform.workspace]
+  region = var.regions[terraform.workspace][count.index]
 }
 
 resource "google_compute_instance" "frontend" {
  count = "${var.nodes[terraform.workspace]}"
  name         = "frontend-${terraform.workspace}-${count.index}"
  machine_type = "f1-micro"
- zone         = var.zones[terraform.workspace] 
+ zone         = var.zones[terraform.workspace][count.index] 
 
  boot_disk {
    initialize_params {

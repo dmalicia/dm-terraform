@@ -21,45 +21,52 @@ resource "google_compute_address" "asg" {
 
 # Create a Google Compute Forwarding Rule
 resource "google_compute_forwarding_rule" "asg" {
-  name       = "asg-forwarding-rule"
-  target     = "${google_compute_target_pool.asg.self_link}"
+  count      = var.asg_per_region[terraform.workspace]
+  name       = "asg-forwarding-rule-${count.index}${random_id.instance_id.hex}"
+  target     = google_compute_target_pool.asg[count.index].self_link
   port_range = "80"
-  ip_address = "${google_compute_address.asg.address}"
+  ip_address = google_compute_address.asg.address
 }
 
 resource "google_compute_target_pool" "asg" {
+  count      = var.asg_per_region[terraform.workspace]
   name          = "asg-target-pool"
-  health_checks = ["${google_compute_http_health_check.asg.name}"]
+  health_checks = ["${google_compute_http_health_check.asg[count.index].name}"]
 }
 
 # Create a Google Compute Http Health Check
 resource "google_compute_http_health_check" "asg" {
-  name                 = "asg-health-check"
+  count                = var.asg_per_region[terraform.workspace]
+  name                 = "asg-health-check--${count.index}${random_id.instance_id.hex}"
   request_path         = "/"
   check_interval_sec   = 30
   timeout_sec          = 3
   healthy_threshold    = 2
   unhealthy_threshold  = 2
-  port                 = "${var.server_port}"
+  port                 = var.server_port
 }
 
 #---------------------------------------------------------------------
 
 # Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
-  name = "asg-group-manager"
-  zone = "us-central1-c"
+
+  count = var.asg_per_region[terraform.workspace]
+  name = "asg-group-manager-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
+  zone = var.zones[terraform.workspace][count.index]
   version { 
-  instance_template  = "${google_compute_instance_template.asg.self_link}"
+  instance_template  = google_compute_instance_template.asg.self_link
   }
-  target_pools       = ["${google_compute_target_pool.asg.self_link}"]
+  target_pools       = ["${google_compute_target_pool.asg[count.index].self_link}"]
   base_instance_name = "asg"
 }
 
 resource "google_compute_autoscaler" "asg" {
-  name   = "my-autoscaler"
-  zone   = "us-central1-c"
-  target = google_compute_instance_group_manager.asg.id
+  count  = var.asg_per_region[terraform.workspace]
+  name   = "asg-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
+  zone   = "var.zones${terraform.workspace}"
+  target = google_compute_instance_group_manager.asg[count.index].id
+
 
   autoscaling_policy {
     max_replicas    = 2
