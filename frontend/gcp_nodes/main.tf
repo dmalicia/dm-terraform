@@ -24,7 +24,7 @@ resource "google_compute_instance" "frontend" {
  count = "${var.nodes[terraform.workspace]}"
  name         = "dmlc-frontend-${terraform.workspace}-${count.index}"
  machine_type = "f1-micro"
- zone         = "{var.zones[terraform.workspace]}" 
+ zone         = var.zones[terraform.workspace] 
 
  boot_disk {
    initialize_params {
