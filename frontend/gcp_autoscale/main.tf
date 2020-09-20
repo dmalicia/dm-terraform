@@ -47,7 +47,7 @@ resource "google_compute_http_health_check" "asg" {
 
 # Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
-  name = "asg-group-manager"
+  name = "asg-group-manager-${terraform.workspace}"
   zone = "us-central1-c"
   version { 
   instance_template  = "${google_compute_instance_template.asg.self_link}"
@@ -57,7 +57,7 @@ resource "google_compute_instance_group_manager" "asg" {
 }
 
 resource "google_compute_autoscaler" "asg" {
-  name   = "my-autoscaler"
+  name   = "asg-${terraform.workspace}"
   zone   = "us-central1-c"
   target = google_compute_instance_group_manager.asg.id
 
