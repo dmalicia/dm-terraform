@@ -18,7 +18,7 @@ START=yes
 EOF
 cat >> /puppet.conf <<EOF
 [agent]
-server = seed.dmlc.pw
+server = 35.233.219.1
 EOF
 cp /puppet.conf /etc/puppet/puppet.conf
 echo "*/5 * * * * root puppet agent -t" >> /etc/crontab
