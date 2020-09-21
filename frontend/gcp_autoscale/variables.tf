@@ -56,8 +56,8 @@ variable "regions" {
 variable "asg_per_region" {
   type      = map
   default = { 
-    amer = "1"
-    euro = "1"
+    amer = "2"
+    euro = "2"
     asia = "1"
     ocea = "1"
   }
