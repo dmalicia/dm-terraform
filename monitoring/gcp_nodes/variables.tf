@@ -24,7 +24,7 @@ variable "storage_class" {
 # Source code folder
 variable "scbootstrap" {
   type       = string
-  default    = "/usr/local/share/dm-terraform/monitoring/bootstrap/"
+  default    = "/usr/local/share/dm-terraform/frontend/bootstrap/"
 }
 
 # Seed Creds
