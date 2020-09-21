@@ -69,7 +69,7 @@ resource "google_compute_autoscaler" "asg" {
   count  = var.asg_per_region[terraform.workspace]
   name   = "asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   zone   = var.zones[terraform.workspace][count.index]
-  target = "https://www.googleapis.com/compute/v1/projects/heroic-muse-289316/zones/us-central1-c/instanceGroupManagers/asg-group-manager-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  target = google_compute_instance_group_manager.asg[count.index].id
 
 
   autoscaling_policy {
