@@ -64,7 +64,7 @@ resource "google_compute_instance_group_manager" "asg" {
 resource "google_compute_autoscaler" "asg" {
   count  = var.asg_per_region[terraform.workspace]
   name   = "asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
-  zone   = "var.zones[terraform.workspace][count.index]"
+  zone   = var.zones[terraform.workspace][count.index]
   target = google_compute_instance_group_manager.asg[count.index].id
 
 
