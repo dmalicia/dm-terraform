@@ -52,7 +52,7 @@ resource "google_compute_http_health_check" "asg" {
 resource "google_compute_instance_group_manager" "asg" {
 
   count = var.asg_per_region[terraform.workspace]
-  name = "asg-group-manager-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
+  name = "asg-group-manager-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   zone = var.zones[terraform.workspace][count.index]
   version { 
   instance_template  = google_compute_instance_template.asg.self_link
@@ -63,8 +63,8 @@ resource "google_compute_instance_group_manager" "asg" {
 
 resource "google_compute_autoscaler" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name   = "asg-${terraform.workspace}-${var.regions[count.index][terraform.workspace]}"
-  zone   = "var.zones${terraform.workspace}"
+  name   = "asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  zone   = var.zones[terraform.workspace][count.index]
   target = google_compute_instance_group_manager.asg[count.index].id
 
 
