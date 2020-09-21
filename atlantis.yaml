@@ -29,4 +29,8 @@ projects:
     autoplan:
       when_modified: ["../frontend/gcp_autoscale/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: amer
-
+  - name: frontend_asia_autoscale
+    dir: frontend/gcp_autoscale
+    autoplan:
+      when_modified: ["../frontend/gcp_autoscale/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: asia 
