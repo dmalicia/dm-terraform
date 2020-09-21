@@ -48,5 +48,5 @@ projects:
     dir: monitoring/gcp_nodes
     autoplan:
       when_modified: ["../monitoring/gcp_autoscale/*.terraform", "../monitoring/bootstrap/*", "*.tf", "*.tfvars"]
-    worspace: amer
+    workspace: amer
 
