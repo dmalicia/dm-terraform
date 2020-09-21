@@ -36,19 +36,20 @@ variable "scpath" {
 variable "zones" {
   type      = map
   default = {
-    amer = [ "us-central1-c", "us-east1-b" ] 
-    euro = [ "europe-west4-a" ]
-    asia = [ "australia-southeast1-b" ]
-
+    amer = [ "us-west4-b", "us-east4-b" ] 
+    euro = [ "europe-west6-a", "europe-north1-a" ]
+    ocea = [ "australia-southeast1-b" ]
+    asia = [ "asia-east2-b", "asia-south1-b" ] 
 }
 }
 
 variable "regions" {
   type      = map
   default = {
-    amer = [ "us-central1", "us-east1" ]
-    euro = [ "europe-west4" ]
-    asia = [ "australia-southeast1" ] 
+    amer = [ "us-west4", "us-east4" ]
+    euro = [ "europe-west6", "europe-north1" ]
+    ocea = [ "australia-southeast1" ] 
+    asia = [ "asia-east2" , "asia-south1" ]
 }
 }
 
@@ -56,8 +57,9 @@ variable "asg_per_region" {
   type      = map
   default = { 
     amer = "1"
-    euro = "0"
+    euro = "1"
     asia = "1"
+    ocea = "1"
   }
 }
 
