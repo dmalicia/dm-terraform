@@ -46,7 +46,7 @@ variable "zones" {
 variable "regions" {
   type      = map
   default = {
-    amer = [ "us-central1-c", "us-east1" ]
+    amer = [ "us-central1", "us-east1" ]
     euro = [ "europe-west4" ]
     asia = [ "australia-southeast1" ] 
 }
@@ -57,7 +57,7 @@ variable "asg_per_region" {
   default = { 
     amer = "1"
     euro = "0"
-    asia = "0"
+    asia = "1"
   }
 }
 
