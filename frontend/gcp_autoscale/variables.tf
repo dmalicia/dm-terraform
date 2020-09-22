@@ -67,3 +67,15 @@ variable "server_port" {
   description = "The port the server will use for HTTP requests"
   default = "80"
 }
+
+# define dns
+variable "dns_name" {
+  type        = string
+  description = "The name of the DNS"
+}
+# define domain
+variable "dns_domain" {
+  type        = string
+  description = "The domain of the DNS"
+}
+
