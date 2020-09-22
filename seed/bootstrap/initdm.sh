@@ -24,3 +24,4 @@ sudo apt-get install puppetmaster-passenger -yq
 gpg --decrypt /usr/local/share/dm-terraform/seed/bootstrap/ecreds.json.gpg > /usr/local/share/dm-terraform/seed/bootstrap/creds.json
 docker cp /usr/local/share/dm-terraform/seed/bootstrap/creds.json atlantis:/
 docker restart atlantis
+sudo puppet module install garethr-docker
