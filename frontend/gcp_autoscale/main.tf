@@ -50,16 +50,16 @@ resource "google_dns_record_set" "asg" {
 }
 
 
-resource "google_dns_record_set" "asg_main" {
-  count = var.asg_per_region[terraform.workspace]
-  name = "${var.dns_domain}"
-  type = "A"
-  ttl  = 300
-
-  managed_zone = var.dns_name
-
-  rrdatas = ["${google_compute_address.asg[count.index].address}" ]
-}
+# resource "google_dns_record_set" "asg_main" {
+#  count = var.asg_per_region[terraform.workspace]
+#  name = "${var.dns_domain}"
+#  type = "A"
+#  ttl  = 300
+#
+#  managed_zone = var.dns_name
+#
+#  rrdatas = ["${google_compute_address.asg[count.index].address}" ]
+#}
 
 
 # Create a Google Compute Http Health Check
