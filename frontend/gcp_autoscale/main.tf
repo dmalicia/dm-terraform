@@ -27,7 +27,7 @@ resource "google_compute_forwarding_rule" "asg" {
   name       = "asg-forwarding-rule-${var.regions[terraform.workspace][count.index]}"
   region        = var.regions[terraform.workspace][count.index]
   target     = google_compute_target_pool.asg[count.index].self_link
-  port_range = "80"
+  port_range = "443"
   ip_address = google_compute_address.asg[count.index].address
 }
 

@@ -11,10 +11,12 @@ This project is a cloud spanner in terraform the stack is :
 - NodeJS
 - Grafana
 - Prometheus
+- Docker
 
 * To be Implemented
 - Cassandra
 - Consul
+- Packer
 
 seed -> the bastion node. from it you can spawn the rest of the clouds.
 bucket -> google cloud bucket with the terraform state files
@@ -24,4 +26,4 @@ monitoring -> deploy prometheus and grafana
 atlantis.yaml -> the main file where we declare what atlants will manage
 
 
-# 
+# dm-puppet -> puppet repo  
