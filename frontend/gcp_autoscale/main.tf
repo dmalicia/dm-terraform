@@ -12,7 +12,7 @@ data "google_secret_manager_secret_version" "basic" {
 }
 
 resource "random_id" "instance_id" {
- byte_length = 8
+ byte_length = 4
 }
 
 resource "google_compute_address" "asg" {
