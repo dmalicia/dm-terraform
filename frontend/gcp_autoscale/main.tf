@@ -38,6 +38,30 @@ resource "google_compute_target_pool" "asg" {
   health_checks = ["${google_compute_http_health_check.asg[count.index].name}"]
 }
 
+resource "google_dns_record_set" "asg" {
+  count = var.asg_per_region[terraform.workspace]
+  name = "frontend-asg.${var.regions[terraform.workspace][count.index]}.${var.dns_domain}"
+  type = "A"
+  ttl  = 300
+
+  managed_zone = var.dns_name
+
+  rrdatas = ["${google_compute_address.asg[count.index].address}" ]
+}
+
+
+resource "google_dns_record_set" "asg_main" {
+  count = var.asg_per_region[terraform.workspace]
+  name = "${var.dns_domain}"
+  type = "A"
+  ttl  = 300
+
+  managed_zone = var.dns_name
+
+  rrdatas = ["${google_compute_address.asg[count.index].address}" ]
+}
+
+
 # Create a Google Compute Http Health Check
 resource "google_compute_http_health_check" "asg" {
   count                = var.asg_per_region[terraform.workspace]

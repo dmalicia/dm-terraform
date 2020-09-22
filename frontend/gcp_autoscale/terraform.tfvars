@@ -5,3 +5,6 @@ gcp_auth_file = "/creds.json"
 # Bucket
 bucket-name   = "dmustf" 
 storage-class = "REGIONAL"
+# DNS Settings
+dns_name = "dmlc"
+dns_domain = "dmlc.pw."
