@@ -22,4 +22,4 @@ server = puppet
 EOF
 cp /puppet.conf /etc/puppet/puppet.conf
 echo "*/5 * * * * root puppet agent -t" >> /etc/crontab
-echo "35.233.219.1 puppet"
+echo "35.233.219.1 puppet" >> /etc/hosts
