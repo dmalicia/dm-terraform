@@ -1,3 +1,4 @@
+#### DRAFT UNDER TEST
 terraform {
   backend "gcs" {
     bucket    = "dmustf"
@@ -6,23 +7,15 @@ terraform {
   }
 }
 
-resource "aws_instance" "web" {
-  ami           = "ami-0f72889960844fb97"
-  instance_type = "t3.micro"
-
-  tags = {
-    Name = "Init"
-  }
-}
-
 module "asg" {
+  count = var.asg_per_region[terraform.workspace]
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "~> 3.0"
 
-  name = "service"
+  name = "frontend-aws-autoscale"
 
   # Launch configuration
-  lc_name = "example-lc"
+  lc_name = "dm-lc"
 
   image_id        = "ami-0f72889960844fb97"
   instance_type   = "t2.micro"
@@ -45,7 +38,7 @@ module "asg" {
   ]
 
   # Auto scaling group
-  asg_name                  = "example-asg"
+  asg_name                  = "dm-asg"
   vpc_zone_identifier       = ["subnet-1235678", "subnet-87654321"]
   health_check_type         = "EC2"
   min_size                  = 0
@@ -56,7 +49,7 @@ module "asg" {
   tags = [
     {
       key                 = "Environment"
-      value               = "dev"
+      value               = "prod"
       propagate_at_launch = true
     },
     {
@@ -67,7 +60,7 @@ module "asg" {
   ]
 
   tags_as_map = {
-    extra_tag1 = "extra_value1"
-    extra_tag2 = "extra_value2"
+    extra_tag1 = "dm extra_value1"
+    extra_tag2 = "dm extra_value2"
   }
 }
