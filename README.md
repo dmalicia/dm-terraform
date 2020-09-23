@@ -3,7 +3,7 @@
 dm-terraform is a boilerplate made in terraform to spawn a high availability webserver in hybrid clouds
  
 the stack is composed by :
->- Terraform,Atlantis,Puppet,Git,NodeJS,Grafana,Puppet,Prometheus , Docker , Cassandra 
+>- Terraform, Atlantis, Puppet, Git, NodeJS, Grafana, Puppet, Prometheus, Docker, Cassandra 
 
 to be implemented: 
 >- Consul, Packer
@@ -11,7 +11,7 @@ to be implemented:
 # supported clouds :
   >- GCP - implemented
   >- AWS - implementing
-  >- Digital Ocean, Vsphere , Openstack or any other terraform has the providers.  - to be implemented
+  >- To be implemented : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
   
 
 # suggested initial architecture GCP
@@ -88,7 +88,9 @@ In this pull request we are spawnning an autoscale cluster in AWS to act as fron
 https://github.com/dmalicia/dm-terraform/pull/51
 
 After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP and our topology would be some something like this :
+![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/asg2clouds.svg)
 
+The last step necessary would be to create the AWS enpoint in the dmlc.pw so the GCP load-balancer can find and route requests to it.
 
 
 # To do
@@ -99,6 +101,7 @@ After this when you have the VIP you can add an external endpoint in Google Clou
 - Setup Cassandra Rings
 - Add AWS Autoscaling
 - Automate DNS scaling down
+- Automate endpoints in GCP load balancer 
 
 
 # References
