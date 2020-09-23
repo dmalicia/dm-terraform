@@ -22,7 +22,7 @@ resource "google_compute_address" "static" {
 }
 
 resource "google_compute_instance" "cassandra" {
- count = "${var.nodes[terraform.workspace]}"
+ count = var.nodes[terraform.workspace]
  name         = "cassandra-${terraform.workspace}-${count.index}"
  machine_type = "f1-micro"
  zone         = var.zones[terraform.workspace][count.index] 
@@ -48,7 +48,7 @@ metadata_startup_script = file("${var.scbootstrap}/puppet.sh")
 }
 
 resource "google_dns_record_set" "cassandra" {
-  count = "${var.nodes[terraform.workspace]}"
+  count = var.nodes[terraform.workspace]
   name = "cassandra${var.regions[terraform.workspace][count.index]}${count.index}.${var.dns_domain}"
   type = "A"
   ttl  = 300
