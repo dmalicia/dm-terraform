@@ -102,6 +102,7 @@ After this when you have the VIP you can add an external endpoint in Google Clou
 - Automate DNS removal when Autoscale scale down
 - Setup Cassandra Rings
 - Add AWS Autoscaling
+- Automate DNS scaling down
 
 
 # References
