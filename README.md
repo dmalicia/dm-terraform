@@ -1,12 +1,12 @@
-### dm-terraform
+## dm-terraform
 
-dm-terraform is a boilerplate made in terraform to spawn a high availability webserver in hybrid clouds
+dm-terraform is a boilerplate made in terraform to spawn a high availability webservers in hybrid or single clouds
  
 the stack is composed by :
->- Terraform, Atlantis, Puppet, Git, NodeJS, Grafana, Puppet, Prometheus, Docker, Cassandra 
+#>- Terraform, Atlantis, Puppet, Git, NodeJS, Grafana, Puppet, Prometheus, Docker, Cassandra 
 
 to be implemented: 
->- Consul, Packer
+#>- Consul, Packer
 
 ### supported clouds :
   >- GCP
