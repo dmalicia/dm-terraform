@@ -74,6 +74,27 @@ I enabled CDN on the load balancer so the request should be redirected for the n
 >- Atlantis : http://seed.dmlc.pw:4141/
 >- Graphana : http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) (no data yet)
 
+# Naming convention & roles :
+
+The naming is shows information about the role and location of the node
+
+Ex.
+frontend-asg.us-west4.dmlc.pw.
+
+In this stack we have 4 regions and they can have multiple zones configured
+
+| AMER | ASIA | EURO | OCEA |
+
+The roles are these ones :
+
+| Role | Status of development |
+| ------ | ------ |
+| frontend  |  docker app is running, basic firewall configured |
+| backend | bootstrapped / docker ready |
+| cassandra | bootstrapped / docker ready  |
+| monitoring | implemented but not configured |
+| seed | bastion where everything started |
+
 
 # Expand to other clouds or vmware ( under construction )
 To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes:
