@@ -25,9 +25,9 @@ to be implemented:     ``` Consul, Packer ```
 
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
-https://dmlc.pw is the domain of our service using google load balancer with CDN serving the content, autoscales running the docker application.
+https://dmlc.pw is the domain of our service using google load balancer with CDN serving the content, autoscales are running the docker application.
 The external load balancer offloads the SSL and route the client to the nearest autoscale frontend vip.
-The regions can have multiple autoscale in multiple zones to improve the high availability.
+The regions can have multiple autoscales in multiple zones to improve the high availability and reach.
 Here is an example of a pull request that can recreate this arch using the atlantis automation with github webhook:
 https://github.com/dmalicia/dm-terraform/pull/42
 
