@@ -21,6 +21,22 @@ the stack is composed by :
   >- Digital Ocean ( nodes ) - to be implemented
   >- Openstack ( austoscale and nodes ) - to be implemented
   >- Vsphere ( nodes ) - to be implemented
+  
 
 # Suggested architecture GCP
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
+
+https://dmlc.pw is the domain of the main vip using google load balancer with CDN.
+The external load balancer offloads the SSL and route the client to the nearest autoscale frontend vip
+The regions can have multiple autoscale in multiple zones to improve the high availability.
+Here is an example of a pull request that can recreate this arch using the atlantis automation with github webhook:
+https://github.com/dmalicia/dm-terraform/pull/42
+
+In this pull request it will be firing :
+4 Autoscaling for frontend with max 3 nodes each in 4 differente zones
+4 Autoscaling for backend with max 3 nodes each in 4 differente zones
+3 cassandra instances for the cluster
+
+The instances will be bootstrapped to puppet that will run these manifests here :
+
+The webserver application is docker container running nodejs from this simple app here :
