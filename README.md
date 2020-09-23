@@ -18,10 +18,13 @@ to be implemented:
  
 
  
-Prospects : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
-  
+prospects : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
+ 
+ 
+ 
 
 ### suggested initial architecture GCP
+
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
 https://dmlc.pw is the domain of our service using google load balancer with CDN serving the content, autoscales running the docker application.
