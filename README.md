@@ -84,15 +84,11 @@ To enable other clouds or vsphere we can create a folder in the service with the
 │   ├── gcp_nodes
 │   └── openstack_autoscale
 ```
-After the provider is authenticated and configured you will create the tfstate in the gcp backend bucket and add an entry like this in atlantis :
+In this pull request we are spawnning an autoscale cluster in AWS to act as frontend :
+https://github.com/dmalicia/dm-terraform/pull/51
 
-```  - name: frontend_euro_aws_autoscale
-    dir: frontend/aws_autoscale
-    autoplan:
-      when_modified: ["../frontend/aws_autoscale/*.terraform", "../aws_autoscale/bootstrap/*", "*.tf", "*.tfvars"]
-    workspace: euro
-``` 
-After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP.
+After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP and our topology would be some something like this :
+
 
 
 # To do
