@@ -68,7 +68,10 @@ In the seed server where the puppet master is running you can see the nodes boot
 ```
 After this the nodes will be running what was designated in their puppet manifest.
 
-# Hybrid Clouds
+
+# Hybrid clouds 
+
+To create a stack
 
 
 
