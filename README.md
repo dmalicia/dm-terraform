@@ -70,11 +70,11 @@ The request will be redirected for the nearest google edge location.
 
 # URLs/ Endpoints of the Project :
 
-Main URL served by google CDN : https://dmlc.pw
-Prometheus ( node exporters to be implemented ) : http://monitoring.dmlc.pw:9090/graph ( admin / yes123 )
-Alert Manager : http://monitoring.dmlc.pw:9093/#/alerts ( admin / yes123 )
-Atlantis : http://seed.dmlc.pw:4141/
-Graphana (the data in boards will show after I implement the node-exporter): http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) 
+>- Main URL served by google CDN : https://dmlc.pw
+>- Prometheus ( node exporters to be implemented ) : http://monitoring.dmlc.pw:9090/graph ( admin / yes123 )
+>- Alert Manager : http://monitoring.dmlc.pw:9093/#/alerts ( admin / yes123 )
+>- Atlantis : http://seed.dmlc.pw:4141/
+>- Graphana (the data in boards will show after I implement the node-exporter): http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) 
 
 
 
