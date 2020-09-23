@@ -18,6 +18,7 @@ resource "random_id" "instance_id" {
 resource "google_compute_address" "asg" {
   count = var.asg_per_region[terraform.workspace]
   region = var.regions[terraform.workspace][count.index]
+  address_type = "INTERNAL"
   name = "backend-autoscale-${random_id.instance_id.hex}"
 }
 
