@@ -84,8 +84,3 @@ projects:
     autoplan:
       when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: asia
-  - name: frontend_amer_autoscale_aws
-    dir: frontend/aws_autoscale
-    autoplan:
-      when_modified: ["../frontend/aws_autoscale/*.terraform" , "*.tf"]
-    workspace: amer
