@@ -42,7 +42,7 @@ for testing purpose I will apply a small point of presence with 2 autoscales lim
 the pull request for it is this one :
 https://github.com/dmalicia/dm-terraform/pull/44
 
-In the seed server where the puppet master is running you can see the nodes bootstrapped :
+After "atlantis apply" the nodes will be booted and they wiil reach puppet for the bootstrap : 
 ```
 # puppet cert list --all
 + "backend-asg-amer-us-west40-94k2.us-west4-b.c.heroic-muse-289316.internal"          (SHA256) 
@@ -51,7 +51,7 @@ In the seed server where the puppet master is running you can see the nodes boot
 + "backend-asg-euro-europe-west60-jph6.europe-west6-a.c.heroic-muse-289316.internal"  (SHA256) 
 + "cassandra-amer-0.us-east1-b.c.heroic-muse-289316.internal"                         (SHA256) 
 + "cassandra-euro-0.europe-west4-a.c.heroic-muse-289316.internal"                     (SHA256) 
-+ "dmlc-seed-6e291ed314bc831a.us-west1-a.c.heroic-muse-289316.internal"               (SHA256) 18:59:D3:4B:44:C3:AD:9E:92:1E:9A:CA:B4:06:B9:BF:08:C6:72:76:7B:82:3E:5F:F8:1A:AE:63:2C:BC:48:8A (alt names: "DNS:dmlc-seed-6e291ed314bc831a.us-west1-a.c.heroic-muse-289316.internal", "DNS:puppet")
++ "dmlc-seed-6e291ed314bc831a.us-west1-a.c.heroic-muse-289316.internal"               (SHA256) 
 + "frontend-asg-amer-us-west40-fgcg.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
 + "frontend-asg-amer-us-west40-q6c6.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
 + "frontend-asg-amer-us-west40-zm1p.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
@@ -59,13 +59,11 @@ In the seed server where the puppet master is running you can see the nodes boot
 + "frontend-asg-euro-europe-west60-ppjr.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) 
 + "frontend-asg-euro-europe-west60-tk29.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) `
 ```
-After this the nodes will be running what was designated in their puppet manifest.
+After this the nodes will be running what was designated in their puppet manifest. In this case for frontend a nodejs app in docker.
 
-Since we are using Google CDN , when you hit the VIP ( external ip ) 
-```Name:	dmlc.pw
-Address: 34.120.231.79
-``` 
-The request will be redirected for the nearest google edge location.
+https://dmlc.pw -> 34.129.231.79:443 is the load balancer that deals with the ssl and offloads it in port 80 to the autoscales.
+
+I enabled CDN on the load balancer so the request should be redirected for the nearest google edge location.
 
 
 # URLs/ Endpoints of the Project :
