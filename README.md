@@ -68,12 +68,35 @@ In the seed server where the puppet master is running you can see the nodes boot
 ```
 After this the nodes will be running what was designated in their puppet manifest.
 
+Since we are using Google CDN , when you hit the VIP ( external ip ) 
+```Name:	dmlc.pw
+Address: 34.120.231.79
+``` 
+The request will be redirected for the nearest google edge location.
 
-# Hybrid clouds 
 
-To create a stack
+# Expand to other clouds or vmware
+To enable other clouds or vsphere you need to have the provider properly configured as the gcp are and then you need an entry in atlantis.yml
+
+```  - name: frontend_euro_aws_autoscale
+    dir: frontend/aws_autoscale
+    autoplan:
+      when_modified: ["../frontend/aws_autoscale/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: euro
+``` 
+After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP
 
 
+# Todo
+- Create golden image for bootstrap with Packer
+- Improve firewall and recipes rules in Puppet
+- Finish grafana / prometheus setup
+- Automate DNS removal when Autoscale scale down
+
+
+# References
+https://github.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana
+https://forge.puppet.com/garethr/docker
 
 
 
