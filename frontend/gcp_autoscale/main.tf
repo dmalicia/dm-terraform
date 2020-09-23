@@ -128,18 +128,17 @@ resource "google_compute_instance_template" "asg" {
 }
 
 #---------------------------------------------------------------------
-/*
 # Create a Google Compute Backend Service
 resource "google_compute_backend_service" "asg" {
-  name        = "asg-backend-service"
+  count  = var.asg_per_region[terraform.workspace]
+  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   port_name   = "http"
   protocol    = "HTTP"
   timeout_sec = 10
   enable_cdn  = false
   backend {
-    group = "${google_compute_instance_group_manager.asg.instance_group}"
+    group = "${google_compute_instance_group_manager.asg[count.index].instance_group}"
   }
-  health_checks = ["${google_compute_http_health_check.asg.self_link}"]
+  health_checks = ["${google_compute_http_health_check.asg[count.index].self_link}"]
 }
-*/
 #---------------------------------------------------------------------
