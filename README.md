@@ -71,16 +71,14 @@ The request will be redirected for the nearest google edge location.
 # URLs/ Endpoints of the Project :
 
 >- Main URL served by google CDN : https://dmlc.pw
->- Prometheus ( node exporters to be implemented ) : http://monitoring.dmlc.pw:9090/graph ( admin / yes123 )
+>- Prometheus : http://monitoring.dmlc.pw:9090/graph ( admin / yes123 )  ( node exporters to be implemented )
 >- Alert Manager : http://monitoring.dmlc.pw:9093/#/alerts ( admin / yes123 )
 >- Atlantis : http://seed.dmlc.pw:4141/
->- Graphana (the data in boards will show after I implement the node-exporter): http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) 
-
-
+>- Graphana : http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) (no data yet)
 
 
 # Expand to other clouds or vmware ( under construction )
-To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes.
+To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes:
 
 ```├── frontend
 │   ├── aws_nodes
@@ -88,6 +86,7 @@ To enable other clouds or vsphere we can create a folder in the service with the
 │   ├── gcp_nodes
 │   └── openstack_autoscale
 ```
+After the provider is authenticated and configured you will create the tfstate in the gcp backend bucket and add an entry like this in atlantis :
 
 ```  - name: frontend_euro_aws_autoscale
     dir: frontend/aws_autoscale
@@ -95,7 +94,7 @@ To enable other clouds or vsphere we can create a folder in the service with the
       when_modified: ["../frontend/aws_autoscale/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: euro
 ``` 
-After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP
+After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP.
 
 
 # Todo
@@ -103,6 +102,8 @@ After this when you have the VIP you can add an external endpoint in Google Clou
 - Improve firewall and recipes rules in Puppet
 - Finish grafana / prometheus setup
 - Automate DNS removal when Autoscale scale down
+- Setup Cassandra Rings
+- Add AWS Autoscaling
 
 
 # References
