@@ -16,11 +16,9 @@ the stack is composed by :
 >- Packer ( to be implemented )
 
 # supported clouds :
-  >- GCP ( autoscale and nodes ) - Tested
-  >- AWS ( autoscale and nodes ) - Testing
-  >- Digital Ocean ( nodes ) - to be implemented
-  >- Openstack ( austoscale and nodes ) - to be implemented
-  >- Vsphere ( nodes ) - to be implemented
+  >- GCP - implemented
+  >- AWS - implementing
+  >- Digital Ocean, Vsphere , Openstack or any other terraform has the providers.  - to be implemented
   
 
 # Suggested architecture GCP
