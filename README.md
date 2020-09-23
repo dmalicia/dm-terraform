@@ -35,7 +35,9 @@ https://github.com/dmalicia/dm-terraform/pull/42
 In this pull request it will be firing :
 
  >-4 Autoscaling for frontend with max 3 nodes each in 4 differente zones
+ 
  >-4 Autoscaling for backend with max 3 nodes each in 4 differente zones
+ 
  >-3 cassandra instances for the cluster
 
 The instances will be bootstrapped to puppet that will run these manifests here :
