@@ -29,7 +29,7 @@ to be implemented:     ``` Consul, Packer ```
  
 
 
-## suggested initial architecture GCP :
+## posible cluster start architecture GCP :
 
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
