@@ -45,4 +45,9 @@ The webserver application is docker container running nodejs from this simple ap
 https://github.com/dmalicia/dm-nodejs
 
 
+For testing purpose I will apply a small point of presence with 2 autoscales in different regions to demonstrate the service working,
+the pull request for it is this one :
+https://github.com/dmalicia/dm-terraform/pull/44
+
+
 
