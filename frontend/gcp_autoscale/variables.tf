@@ -58,7 +58,7 @@ variable "asg_per_region" {
   default = { 
     amer = "1"
     euro = "1"
-    asia = "0"
+    asia = "1"
     ocea = "0"
   }
 }
