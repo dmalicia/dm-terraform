@@ -80,7 +80,7 @@ resource "google_compute_autoscaler" "asg" {
 
 
   autoscaling_policy {
-    max_replicas    = 3
+    max_replicas    = 2
     min_replicas    = 2
     cooldown_period = 60
 
