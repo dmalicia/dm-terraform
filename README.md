@@ -9,7 +9,7 @@ to be implemented:
 >- Consul, Packer
 
 # supported clouds :
-  >- GCP - implemented
+  >- GCP
   >- AWS - implementing
   >- To be implemented : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
   
