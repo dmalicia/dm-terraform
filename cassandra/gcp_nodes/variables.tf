@@ -56,7 +56,7 @@ variable "zones" {
 variable "regions" {
   type      = map
   default = {
-    amer = [ "us-east1", "us-central1" ]
+    amer = [ "us-east1", "us-central1", "us-east1" ]
     euro = [ "europe-west4", "europe-north1-a" ] 
     asia = [ "australia-southeast1", "asia-northeast" ]
 }
