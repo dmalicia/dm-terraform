@@ -9,9 +9,15 @@ to be implemented:
 >- Consul, Packer
 
 ### supported clouds :
-  >- GCP
-  >- AWS - implementing
-  >- To be implemented : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
+
+| cloud | status |
+| ------ | ------ |
+| GCP | auto scaling , single nodes and parts of the google dns setup |
+| AWS | testing autoscaling but plan is working for single nodes and autoscale group |
+ 
+
+ 
+Prospects : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
   
 
 ### suggested initial architecture GCP
@@ -67,7 +73,9 @@ I enabled CDN on the load balancer so the request should be redirected for the n
 
 
 ### urls/ endpoints of the project :
-| Type | Url | creds | status |
+
+| type | url | creds | status |
+| ------ | ------ | ------ | ------ |
 | Main URL served by google CDN | https://dmlc.pw | On construction | 
 | Prometheus | http://monitoring.dmlc.pw:9090/graph | admin / yes123 | node exporters to be implemented |
 | Alert Manager | http://monitoring.dmlc.pw:9093/#/alerts | admin / yes123 | |
@@ -88,7 +96,7 @@ In this stack we have 4 regions and they can have multiple zones configured
 
 The roles are these ones :
 
-| Role | Status of development |
+| role | status of development |
 | ------ | ------ |
 | frontend  |  docker app is running, basic firewall configured |
 | backend | bootstrapped / docker ready |
