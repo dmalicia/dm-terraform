@@ -22,5 +22,5 @@ the stack is composed by :
   >- Openstack ( austoscale and nodes ) - to be implemented
   >- Vsphere ( nodes ) - to be implemented
 
-
-
+# Suggested architecture GCP
+![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
