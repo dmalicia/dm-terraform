@@ -81,7 +81,7 @@ I enabled CDN on the load balancer so the request should be redirected for the n
 | Prometheus | http://monitoring.dmlc.pw:9090/graph | admin / yes123 | node exporters to be implemented |
 | Alert Manager | http://monitoring.dmlc.pw:9093/#/alerts | admin / yes123 | |
 | Atlantis | http://seed.dmlc.pw:4141/ |  | up |
-| Graphana | http://monitoring.dmlc.pw:3000/?orgId=1 | admin / diego | not feeding data to it yet |
+| Grafana | http://monitoring.dmlc.pw:3000/?orgId=1 | admin / diego | not feeding data to it yet |
 
 
 ## naming convention & roles :
