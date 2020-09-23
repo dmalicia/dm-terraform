@@ -1,4 +1,4 @@
-# dm-terraform
+### dm-terraform
 
 dm-terraform is a boilerplate made in terraform to spawn a high availability webserver in hybrid clouds
  
@@ -8,13 +8,13 @@ the stack is composed by :
 to be implemented: 
 >- Consul, Packer
 
-# supported clouds :
+### supported clouds :
   >- GCP
   >- AWS - implementing
   >- To be implemented : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
   
 
-# suggested initial architecture GCP
+### suggested initial architecture GCP
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
 https://dmlc.pw is the domain of our service using google load balancer with CDN serving the content, autoscales running the docker application.
@@ -37,7 +37,7 @@ https://github.com/dmalicia/dm-puppet
 The webserver application is docker container running nodejs from this simple app here :
 https://github.com/dmalicia/dm-nodejs
 
-# starting a small cluster for testing
+### starting a small cluster for testing
 for testing purpose I will apply a small point of presence with 2 autoscales limited to 2 in different regions to demonstrate the service working,
 the pull request for it is this one :
 https://github.com/dmalicia/dm-terraform/pull/44
@@ -66,15 +66,16 @@ https://dmlc.pw -> 34.129.231.79:443 is the load balancer that deals with the ss
 I enabled CDN on the load balancer so the request should be redirected for the nearest google edge location.
 
 
-# URLs/ Endpoints of the Project :
+### urls/ endpoints of the project :
+| Type | Url | creds | status |
+| Main URL served by google CDN | https://dmlc.pw | On construction | 
+| Prometheus | http://monitoring.dmlc.pw:9090/graph | admin / yes123 | node exporters to be implemented |
+| Alert Manager | http://monitoring.dmlc.pw:9093/#/alerts | admin / yes123 | |
+| Atlantis | http://seed.dmlc.pw:4141/ |  | up |
+| Graphana | http://monitoring.dmlc.pw:3000/?orgId=1 | admin / diego | not feeding data to it yet |
 
->- Main URL served by google CDN : https://dmlc.pw
->- Prometheus : http://monitoring.dmlc.pw:9090/graph ( admin / yes123 )  ( node exporters to be implemented )
->- Alert Manager : http://monitoring.dmlc.pw:9093/#/alerts ( admin / yes123 )
->- Atlantis : http://seed.dmlc.pw:4141/
->- Graphana : http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) (no data yet)
 
-# Naming convention & roles :
+### naming convention & roles :
 
 The naming is shows information about the role and location of the node
 
