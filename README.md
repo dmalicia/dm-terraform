@@ -24,7 +24,7 @@ prospects : Digital Ocean, Vsphere , Openstack or any other providers supported 
  
  
 
-## suggested initial architecture GCP
+## suggested initial architecture GCP :
 
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
@@ -47,7 +47,7 @@ The webserver application is docker container running nodejs from this simple ap
 https://github.com/dmalicia/dm-nodejs
 
 
-## starting a small cluster for testing
+## starting a small cluster for testing :
 for testing purpose I will apply a small point of presence with 2 autoscales limited to 2 in different regions to demonstrate the service working,
 the pull request for it is this one :
 https://github.com/dmalicia/dm-terraform/pull/44
@@ -109,7 +109,7 @@ The roles are these ones :
 | seed | bastion where everything started |
 
 
-# expand to other clouds or vmware ( under construction )
+# expand to other clouds or vmware ( under construction ) :
 To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes:
 
 ```├── frontend
