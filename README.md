@@ -8,6 +8,10 @@ the stack is composed by :
 
 to be implemented:     ``` Consul, Packer ```
  
+ 
+ 
+ 
+ 
 
 ## supported clouds :
 
@@ -18,11 +22,12 @@ to be implemented:     ``` Consul, Packer ```
  
 
  
-prospects : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
+ prospects : Digital Ocean, Vsphere , Openstack or any other providers supported by terraform
  
  
  
  
+
 
 ## suggested initial architecture GCP :
 
@@ -45,6 +50,10 @@ https://github.com/dmalicia/dm-puppet
 
 The webserver application is docker container running nodejs from this simple app here :
 https://github.com/dmalicia/dm-nodejs
+
+
+
+
 
 
 ## starting a small cluster for testing :
@@ -76,6 +85,10 @@ https://dmlc.pw -> 34.129.231.79:443 is the load balancer that deals with the ss
 I enabled CDN on the load balancer so the request should be redirected for the nearest google edge location.
 
 
+
+
+
+
 ## urls/ endpoints of the project :
 
 | type | url | creds | status |
@@ -85,6 +98,10 @@ I enabled CDN on the load balancer so the request should be redirected for the n
 | Alert Manager | http://monitoring.dmlc.pw:9093/#/alerts | admin / yes123 | |
 | Atlantis | http://seed.dmlc.pw:4141/ |  | up |
 | Graphana | http://monitoring.dmlc.pw:3000/?orgId=1 | admin / diego | not feeding data to it yet |
+
+
+
+
 
 
 ### naming convention & roles :
@@ -109,6 +126,10 @@ The roles are these ones :
 | seed | bastion where everything started |
 
 
+
+
+
+
 # expand to other clouds or vmware ( under construction ) :
 To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes:
 
@@ -127,6 +148,10 @@ After this when you have the VIP you can add an external endpoint in Google Clou
 The last step necessary would be to create the AWS enpoint in the dmlc.pw so the GCP load-balancer can find and route requests to it.
 
 
+
+
+
+
 # to do
 - Create golden image for bootstrap with Packer
 - Improve firewall and recipes rules in Puppet
@@ -136,6 +161,11 @@ The last step necessary would be to create the AWS enpoint in the dmlc.pw so the
 - Add AWS Autoscaling
 - Automate DNS scaling down
 - Automate endpoints in GCP load balancer 
+
+
+
+
+
 
 
 # references
