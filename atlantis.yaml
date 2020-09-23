@@ -69,22 +69,22 @@ projects:
     autoplan:
       when_modified: ["../monitoring/gcp_autoscale/*.terraform", "../monitoring/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: amer
- - name: cassandra_amer_nodes
+  - name: cassandra_amer_nodes
     dir: cassandra/gcp_nodes
     autoplan:
       when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: amer
-     - name: cassandra_euro_nodes
+  - name: cassandra_euro_nodes
     dir: cassandra/gcp_nodes
     autoplan:
       when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: euro
- - name: cassandra_ocea_nodes
+  - name: cassandra_ocea_nodes
     dir: cassandra/gcp_nodes
     autoplan:
       when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: ocea 
- - name: cassandra_asia_nodes
+  - name: cassandra_asia_nodes
     dir: cassandra/gcp_nodes
     autoplan:
       when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
