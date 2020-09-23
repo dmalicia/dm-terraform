@@ -3,10 +3,10 @@
 dm-terraform is a boilerplate made in terraform to spawn a high availability webservers in hybrid or single clouds
  
 the stack is composed by :
-#>- Terraform, Atlantis, Puppet, Git, NodeJS, Grafana, Puppet, Prometheus, Docker, Cassandra 
+>- Terraform, Atlantis, Puppet, Git, NodeJS, Grafana, Puppet, Prometheus, Docker, Cassandra 
 
 to be implemented: 
-#>- Consul, Packer
+>- Consul, Packer
 
 ### supported clouds :
   >- GCP
@@ -44,20 +44,20 @@ https://github.com/dmalicia/dm-terraform/pull/44
 
 After "atlantis apply" the nodes will be booted and they wiil reach puppet for the bootstrap : 
 ```
-# puppet cert list --all
-+ "backend-asg-amer-us-west40-94k2.us-west4-b.c.heroic-muse-289316.internal"          (SHA256) 
-+ "backend-asg-amer-us-west40-jzmb.us-west4-b.c.heroic-muse-289316.internal"          (SHA256) 
-+ "backend-asg-euro-europe-west60-2pvn.europe-west6-a.c.heroic-muse-289316.internal"  (SHA256) 
-+ "backend-asg-euro-europe-west60-jph6.europe-west6-a.c.heroic-muse-289316.internal"  (SHA256) 
-+ "cassandra-amer-0.us-east1-b.c.heroic-muse-289316.internal"                         (SHA256) 
-+ "cassandra-euro-0.europe-west4-a.c.heroic-muse-289316.internal"                     (SHA256) 
-+ "dmlc-seed-6e291ed314bc831a.us-west1-a.c.heroic-muse-289316.internal"               (SHA256) 
-+ "frontend-asg-amer-us-west40-fgcg.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
-+ "frontend-asg-amer-us-west40-q6c6.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
-+ "frontend-asg-amer-us-west40-zm1p.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
-+ "frontend-asg-euro-europe-west60-m2g8.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) 
-+ "frontend-asg-euro-europe-west60-ppjr.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) 
-+ "frontend-asg-euro-europe-west60-tk29.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) `
+###### puppet cert list --all
+######+ "backend-asg-amer-us-west40-94k2.us-west4-b.c.heroic-muse-289316.internal"          (SHA256) 
+######+ "backend-asg-amer-us-west40-jzmb.us-west4-b.c.heroic-muse-289316.internal"          (SHA256) 
+######+ "backend-asg-euro-europe-west60-2pvn.europe-west6-a.c.heroic-muse-289316.internal"  (SHA256) 
+######+ "backend-asg-euro-europe-west60-jph6.europe-west6-a.c.heroic-muse-289316.internal"  (SHA256) 
+######+ "cassandra-amer-0.us-east1-b.c.heroic-muse-289316.internal"                         (SHA256) 
+######+ "cassandra-euro-0.europe-west4-a.c.heroic-muse-289316.internal"                     (SHA256) 
+######+ "dmlc-seed-6e291ed314bc831a.us-west1-a.c.heroic-muse-289316.internal"               (SHA256) 
+######+ "frontend-asg-amer-us-west40-fgcg.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
+######+ "frontend-asg-amer-us-west40-q6c6.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
+######+ "frontend-asg-amer-us-west40-zm1p.us-west4-b.c.heroic-muse-289316.internal"         (SHA256) 
+######+ "frontend-asg-euro-europe-west60-m2g8.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) 
+######+ "frontend-asg-euro-europe-west60-ppjr.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) 
+######+ "frontend-asg-euro-europe-west60-tk29.europe-west6-a.c.heroic-muse-289316.internal" (SHA256) `
 ```
 After this the nodes will be running what was designated in their puppet manifest. In this case for frontend a nodejs app in docker.
 
