@@ -17,8 +17,8 @@ to be implemented:
 # suggested initial architecture GCP
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
-https://dmlc.pw is the domain of the main vip using google load balancer with CDN.
-The external load balancer offloads the SSL and route the client to the nearest autoscale frontend vip
+https://dmlc.pw is the domain of our service using google load balancer with CDN serving the content, autoscales running the docker application.
+The external load balancer offloads the SSL and route the client to the nearest autoscale frontend vip.
 The regions can have multiple autoscale in multiple zones to improve the high availability.
 Here is an example of a pull request that can recreate this arch using the atlantis automation with github webhook:
 https://github.com/dmalicia/dm-terraform/pull/42
@@ -80,7 +80,14 @@ Graphana (the data in boards will show after I implement the node-exporter): htt
 
 
 # Expand to other clouds or vmware ( under construction )
-To enable other clouds or vsphere you need to have the provider properly configured as the gcp are and then you need an entry in atlantis.yml
+To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes.
+
+```├── frontend
+│   ├── aws_nodes
+│   ├── gcp_autoscale
+│   ├── gcp_nodes
+│   └── openstack_autoscale
+```
 
 ```  - name: frontend_euro_aws_autoscale
     dir: frontend/aws_autoscale
