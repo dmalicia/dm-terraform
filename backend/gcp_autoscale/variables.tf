@@ -57,7 +57,7 @@ variable "asg_per_region" {
   type      = map
   default = { 
     amer = "1"
-    euro = "1"
+    euro = "0"
     asia = "0"
     ocea = "0"
   }

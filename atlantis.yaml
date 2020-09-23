@@ -44,9 +44,49 @@ projects:
     autoplan:
       when_modified: ["../frontend/gcp_autoscale/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: euro 
+  - name: backend_amer_autoscale
+    dir: backend/gcp_autoscale
+    autoplan:
+      when_modified: ["../backend/gcp_autoscale/*.terraform", "../backend/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: amer
+  - name: backend_asia_autoscale
+    dir: backend/gcp_autoscale
+    autoplan:
+      when_modified: ["../backend/gcp_autoscale/*.terraform", "../backend/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: asia
+  - name: backend_ocea_autoscale
+    dir: backend/gcp_autoscale
+    autoplan:
+      when_modified: ["../backend/gcp_autoscale/*.terraform", "../backend/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: ocea
+  - name: backend_euro_autoscale
+    dir: backend/gcp_autoscale
+    autoplan:
+      when_modified: ["../backend/gcp_autoscale/*.terraform", "../backend/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: euro
   - name: monitoring_amer_nodes
     dir: monitoring/gcp_nodes
     autoplan:
       when_modified: ["../monitoring/gcp_autoscale/*.terraform", "../monitoring/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: amer
+ - name: cassandra_amer_nodes
+    dir: cassandra/gcp_nodes
+    autoplan:
+      when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: amer
+     - name: cassandra_euro_nodes
+    dir: cassandra/gcp_nodes
+    autoplan:
+      when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: euro
+ - name: cassandra_ocea_nodes
+    dir: cassandra/gcp_nodes
+    autoplan:
+      when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: ocea 
+ - name: cassandra_asia_nodes
+    dir: cassandra/gcp_nodes
+    autoplan:
+      when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
+    workspace: asia
 
