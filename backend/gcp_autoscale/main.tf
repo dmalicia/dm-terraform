@@ -18,22 +18,22 @@ resource "random_id" "instance_id" {
 resource "google_compute_address" "asg" {
   count = var.asg_per_region[terraform.workspace]
   region = var.regions[terraform.workspace][count.index]
-  name = "dmlc-autoscale-${random_id.instance_id.hex}"
+  name = "backend-autoscale-${random_id.instance_id.hex}"
 }
 
-resource "google_compute_forwarding_rule" "asg" {
-  count      = var.asg_per_region[terraform.workspace]
-  name       = "asg-forwarding-rule-${var.regions[terraform.workspace][count.index]}"
-  region        = var.regions[terraform.workspace][count.index]
-  target     = google_compute_target_pool.asg[count.index].self_link
-  port_range = "80"
-  ip_address = google_compute_address.asg[count.index].address
-}
+#resource "google_compute_forwarding_rule" "asg" {
+#  count      = var.asg_per_region[terraform.workspace]
+#  name       = "backend-forwarding-rule-${var.regions[terraform.workspace][count.index]}"
+#  region        = var.regions[terraform.workspace][count.index]
+#  target     = google_compute_target_pool.asg[count.index].self_link
+#  port_range = "80"
+#  ip_address = google_compute_address.asg[count.index].address
+#}
 
 resource "google_compute_target_pool" "asg" {
   count      = var.asg_per_region[terraform.workspace]
   region        = var.regions[terraform.workspace][count.index]
-  name          = "asg-target-pool-${var.regions[terraform.workspace][count.index]}"
+  name          = "backend-target-pool-${var.regions[terraform.workspace][count.index]}"
   health_checks = ["${google_compute_http_health_check.asg[count.index].name}"]
 }
 
@@ -50,7 +50,7 @@ resource "google_dns_record_set" "asg" {
 
 resource "google_compute_http_health_check" "asg" {
   count                = var.asg_per_region[terraform.workspace]
-  name                 = "asg-health-check-${var.regions[terraform.workspace][count.index]}"
+  name                 = "backend-health-check-${var.regions[terraform.workspace][count.index]}"
   request_path         = "/"
   check_interval_sec   = 30
   timeout_sec          = 3
@@ -63,7 +63,7 @@ resource "google_compute_instance_group_manager" "asg" {
 
   count = var.asg_per_region[terraform.workspace]
   base_instance_name = "backend-asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}${count.index}"
-  name = "asg-group-manager-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name = "backend-group-manager-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   zone = var.zones[terraform.workspace][count.index]
   version { 
   instance_template  = google_compute_instance_template.asg.self_link
@@ -73,7 +73,7 @@ resource "google_compute_instance_group_manager" "asg" {
 
 resource "google_compute_autoscaler" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name   = "asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name   = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   zone   = var.zones[terraform.workspace][count.index]
   target = google_compute_instance_group_manager.asg[count.index].id
 
@@ -111,7 +111,7 @@ resource "google_compute_instance_template" "asg" {
 
 resource "google_compute_backend_service" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name        = "backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   port_name   = "http"
   protocol    = "HTTP"
   timeout_sec = 10
