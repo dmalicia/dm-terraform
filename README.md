@@ -3,14 +3,10 @@
 dm-terraform is a boilerplate made in terraform to spawn a high availability webserver in hybrid clouds
  
 the stack is composed by :
->- Terraform >- Atlantis >- Puppet >- Git
->- NodeJS
->- Grafana
->- Prometheus
->- Docker
->- Cassandra
->- Consul ( to be implemented )
->- Packer ( to be implemented )
+>- Terraform,Atlantis,Puppet,Git,NodeJS,Grafana,Puppet,Prometheus , Docker , Cassandra 
+
+to be implemented: 
+>- Consul, Packer
 
 # supported clouds :
   >- GCP - implemented
@@ -18,7 +14,7 @@ the stack is composed by :
   >- Digital Ocean, Vsphere , Openstack or any other terraform has the providers.  - to be implemented
   
 
-# Suggested architecture GCP
+# suggested initial architecture GCP
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
 https://dmlc.pw is the domain of the main vip using google load balancer with CDN.
@@ -27,7 +23,7 @@ The regions can have multiple autoscale in multiple zones to improve the high av
 Here is an example of a pull request that can recreate this arch using the atlantis automation with github webhook:
 https://github.com/dmalicia/dm-terraform/pull/42
 
-In this pull request it will be firing :
+In this pull request it would be firing :
 
  > 4 autoscaling for frontend with max 3 nodes each in 4 differente zones
  
@@ -41,8 +37,8 @@ https://github.com/dmalicia/dm-puppet
 The webserver application is docker container running nodejs from this simple app here :
 https://github.com/dmalicia/dm-nodejs
 
-# Creating the service 
-For testing purpose I will apply a small point of presence with 2 autoscales with maximum 3 nodes in different regions to demonstrate the service working,
+# starting a small cluster for testing
+for testing purpose I will apply a small point of presence with 2 autoscales limited to 2 in different regions to demonstrate the service working,
 the pull request for it is this one :
 https://github.com/dmalicia/dm-terraform/pull/44
 
@@ -72,7 +68,18 @@ Address: 34.120.231.79
 The request will be redirected for the nearest google edge location.
 
 
-# Expand to other clouds or vmware
+# URLs/ Endpoints of the Project :
+
+Main URL served by google CDN : https://dmlc.pw
+Prometheus ( node exporters to be implemented ) : http://monitoring.dmlc.pw:9090/graph ( admin / yes123 )
+Alert Manager : http://monitoring.dmlc.pw:9093/#/alerts ( admin / yes123 )
+Atlantis : http://seed.dmlc.pw:4141/
+Graphana (the data in boards will show after I implement the node-exporter): http://monitoring.dmlc.pw:3000/?orgId=1 ( admin / diego ) 
+
+
+
+
+# Expand to other clouds or vmware ( under construction )
 To enable other clouds or vsphere you need to have the provider properly configured as the gcp are and then you need an entry in atlantis.yml
 
 ```  - name: frontend_euro_aws_autoscale
