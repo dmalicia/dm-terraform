@@ -1,27 +1,26 @@
 # dm-terraform
 
+dm-terraform is a boilerplate made in terraform to spawn a high availability webserver in hybrid clouds
+ 
+the stack is composed by :
+>- Terraform
+>- Atlantis
+>- Puppet
+>- Gi
+>- NodeJS
+>- Grafana
+>- Prometheus
+>- Docker
+>- Cassandra
+>- Consul ( to be implemented )
+>- Packer ( to be implemented )
 
-This project is a cloud spanner in terraform the stack is :
-
-* Testing : 
-- Terraform
-- Atlantis
-- Puppet
-- Github
-- NodeJS
-- Grafana
-- Prometheus
-
-* To be Implemented
-- Cassandra
-- Consul
-
-seed -> the bastion node. from it you can spawn the rest of the clouds.
-bucket -> google cloud bucket with the terraform state files
-dns -> dns configurations
-frontend -> spawn autoscales or singles nodes 
-monitoring -> deploy prometheus and grafana 
-atlantis.yaml -> the main file where we declare what atlants will manage
+# supported clouds :
+  >- GCP ( autoscale and nodes ) - Tested
+  >- AWS ( autoscale and nodes ) - Testing
+  >- Digital Ocean ( nodes ) - to be implemented
+  >- Openstack ( austoscale and nodes ) - to be implemented
+  >- Vsphere ( nodes ) - to be implemented
 
 
-# 
+
