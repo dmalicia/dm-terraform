@@ -131,7 +131,8 @@ resource "google_compute_instance_template" "asg" {
 # Create a Google Compute Backend Service
 resource "google_compute_backend_service" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+#  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name        = "asg-backend-prod"
   port_name   = "http"
   protocol    = "HTTP"
   timeout_sec = 10
