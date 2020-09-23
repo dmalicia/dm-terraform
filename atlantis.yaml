@@ -87,5 +87,5 @@ projects:
   - name: fronted_amer_autoscale_aws
     dir: frontend/aws_autoscale
     autoplan:
-      when modified: ["../frontend/aws_autoscale/*.terraform", "*.tfvars"]
+      when modified: ["../frontend/aws_autoscale/*",]
     workspace: amer 
