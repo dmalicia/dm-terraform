@@ -18,13 +18,13 @@ resource "random_id" "instance_id" {
 resource "google_compute_address" "asg" {
   count = var.asg_per_region[terraform.workspace]
   region = var.regions[terraform.workspace][count.index]
-  name = "dmlc-autoscale-${random_id.instance_id.hex}"
+  name = "frontend-${random_id.instance_id.hex}"
 }
 
 # Create a Google Compute Forwarding Rule
 resource "google_compute_forwarding_rule" "asg" {
   count      = var.asg_per_region[terraform.workspace]
-  name       = "asg-forwarding-rule-${var.regions[terraform.workspace][count.index]}"
+  name       = "frontend-forwarding-rule-${var.regions[terraform.workspace][count.index]}"
   region        = var.regions[terraform.workspace][count.index]
   target     = google_compute_target_pool.asg[count.index].self_link
   port_range = "80"
@@ -34,7 +34,7 @@ resource "google_compute_forwarding_rule" "asg" {
 resource "google_compute_target_pool" "asg" {
   count      = var.asg_per_region[terraform.workspace]
   region        = var.regions[terraform.workspace][count.index]
-  name          = "asg-target-pool-${var.regions[terraform.workspace][count.index]}"
+  name          = "frontend-target-pool-${var.regions[terraform.workspace][count.index]}"
   health_checks = ["${google_compute_http_health_check.asg[count.index].name}"]
 }
 
@@ -49,20 +49,6 @@ resource "google_dns_record_set" "asg" {
   rrdatas = ["${google_compute_address.asg[count.index].address}" ]
 }
 
-
-# resource "google_dns_record_set" "asg_main" {
-#  count = var.asg_per_region[terraform.workspace]
-#  name = "${var.dns_domain}"
-#  type = "A"
-#  ttl  = 300
-#
-#  managed_zone = var.dns_name
-#
-#  rrdatas = ["${google_compute_address.asg[count.index].address}" ]
-#}
-
-
-# Create a Google Compute Http Health Check
 resource "google_compute_http_health_check" "asg" {
   count                = var.asg_per_region[terraform.workspace]
   name                 = "asg-health-check-${var.regions[terraform.workspace][count.index]}"
@@ -74,14 +60,11 @@ resource "google_compute_http_health_check" "asg" {
   port                 = var.server_port
 }
 
-#---------------------------------------------------------------------
-
-# Create a Google Compute instance Group Manager
 resource "google_compute_instance_group_manager" "asg" {
 
   count = var.asg_per_region[terraform.workspace]
   base_instance_name = "frontend-asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}${count.index}"
-  name = "asg-group-manager-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name = "frontend-group-manager-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   zone = var.zones[terraform.workspace][count.index]
   version { 
   instance_template  = google_compute_instance_template.asg.self_link
@@ -91,7 +74,7 @@ resource "google_compute_instance_group_manager" "asg" {
 
 resource "google_compute_autoscaler" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name   = "asg-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name   = "frontend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   zone   = var.zones[terraform.workspace][count.index]
   target = google_compute_instance_group_manager.asg[count.index].id
 
@@ -127,11 +110,9 @@ resource "google_compute_instance_template" "asg" {
 
 }
 
-#---------------------------------------------------------------------
-# Create a Google Compute Backend Service
 resource "google_compute_backend_service" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
+  name        = "frontend-svc-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   port_name   = "http"
   protocol    = "HTTP"
   timeout_sec = 10
@@ -141,4 +122,3 @@ resource "google_compute_backend_service" "asg" {
   }
   health_checks = ["${google_compute_http_health_check.asg[count.index].self_link}"]
 }
-#---------------------------------------------------------------------
