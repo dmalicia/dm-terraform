@@ -97,7 +97,7 @@ resource "google_compute_autoscaler" "asg" {
 
 
   autoscaling_policy {
-    max_replicas    = 2
+    max_replicas    = 3
     min_replicas    = 2
     cooldown_period = 60
 
@@ -131,8 +131,7 @@ resource "google_compute_instance_template" "asg" {
 # Create a Google Compute Backend Service
 resource "google_compute_backend_service" "asg" {
   count  = var.asg_per_region[terraform.workspace]
-#  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
-  name        = "asg-backend-prod"
+  name        = "asg-backend-${terraform.workspace}-${var.regions[terraform.workspace][count.index]}"
   port_name   = "http"
   protocol    = "HTTP"
   timeout_sec = 10
