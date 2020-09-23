@@ -89,7 +89,7 @@ After the provider is authenticated and configured you will create the tfstate i
 ```  - name: frontend_euro_aws_autoscale
     dir: frontend/aws_autoscale
     autoplan:
-      when_modified: ["../frontend/aws_autoscale/*.terraform", "../frontend/bootstrap/*", "*.tf", "*.tfvars"]
+      when_modified: ["../frontend/aws_autoscale/*.terraform", "../aws_autoscale/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: euro
 ``` 
 After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP.
