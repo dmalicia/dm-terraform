@@ -49,7 +49,7 @@ metadata_startup_script = file("${var.scbootstrap}/puppet.sh")
 
 resource "google_dns_record_set" "cassandra" {
   count = "${var.nodes[terraform.workspace]}"
-  name = "cassandra${count.index}.${terraform.workspace}.${var.dns_domain}"
+  name = "cassandra${var.regions[terraform.workspace][count.index]}${count.index}.${var.dns_domain}"
   type = "A"
   ttl  = 300
 
