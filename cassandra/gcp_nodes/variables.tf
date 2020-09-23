@@ -48,17 +48,15 @@ variable "zones" {
   type      = map
   default = {
     amer = [ "us-east1-b", "us-central-1c", "us-east1-a" ]
-    euro = [ "europe-west4-a", "europe-north1-a" ] 
-    asia = [ "australia-southeast1-b", "asia-northeast1-b" ] 
+    euro = [ "europe-west4-a", "europe-north1-a", "europe-west4-a" ] 
 }
 }
 
 variable "regions" {
   type      = map
   default = {
-    amer = [ "us-east1", "us-central1" ]
-    euro = [ "europe-west4", "europe-north1-a" ] 
-    asia = [ "australia-southeast1", "asia-northeast" ]
+    amer = [ "us-east1", "us-central1", "us-east1" ]
+    euro = [ "europe-west4", "europe-north1-a", "europe-west4" ] 
 }
 }
 
