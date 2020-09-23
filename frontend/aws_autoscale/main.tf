@@ -1,3 +1,4 @@
+#### DRAFT UNDER TEST
 terraform {
   backend "gcs" {
     bucket    = "dmustf"
@@ -16,6 +17,7 @@ resource "aws_instance" "web" {
 }
 
 module "asg" {
+  count = var.asg_per_region[terraform.workspace]
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "~> 3.0"
 
