@@ -137,7 +137,7 @@ resource "google_compute_backend_service" "asg" {
   timeout_sec = 10
   enable_cdn  = false
   backend {
-    group = "${google_compute_instance_group_manager.asg[count.index].instance_group}"
+    group = google_compute_instance_group_manager.asg[count.index].instance_group
   }
   health_checks = ["${google_compute_http_health_check.asg[count.index].self_link}"]
 }
