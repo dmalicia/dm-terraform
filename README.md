@@ -84,7 +84,7 @@ To enable other clouds or vsphere we can create a folder in the service with the
 │   ├── gcp_nodes
 │   └── openstack_autoscale
 ```
-In this pull request we are spawnning an autoscale cluster in AWS to act as frontend :
+In this pull request we are planning an autoscale cluster in AWS to act as frontend :
 https://github.com/dmalicia/dm-terraform/pull/51
 
 After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP and our topology would be some something like this :
