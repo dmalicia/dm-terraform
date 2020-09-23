@@ -95,7 +95,7 @@ After the provider is authenticated and configured you will create the tfstate i
 After this when you have the VIP you can add an external endpoint in Google Cloud External Load Balancer IP.
 
 
-# Todo
+# To do
 - Create golden image for bootstrap with Packer
 - Improve firewall and recipes rules in Puppet
 - Finish grafana / prometheus setup
