@@ -7,15 +7,6 @@ terraform {
   }
 }
 
-resource "aws_instance" "cassandra_test_aws" {
-  ami           = "ami-0f72889960844fb97"
-  instance_type = "t3.micro"
-
-  tags = {
-    Name = ""
-  }
-}
-
 module "asg" {
   count = var.asg_per_region[terraform.workspace]
   source  = "terraform-aws-modules/autoscaling/aws"
