@@ -3,10 +3,7 @@
 dm-terraform is a boilerplate made in terraform to spawn a high availability webserver in hybrid clouds
  
 the stack is composed by :
->- Terraform
->- Atlantis
->- Puppet
->- Gi
+>- Terraform >- Atlantis >- Puppet >- Git
 >- NodeJS
 >- Grafana
 >- Prometheus
