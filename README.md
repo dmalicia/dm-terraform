@@ -1,4 +1,4 @@
-## dm-terraform
+# dm-terraform
 
 dm-terraform is a boilerplate made in terraform to spawn a high availability webservers in hybrid or single clouds
  
@@ -6,10 +6,10 @@ the stack is composed by :
 
 ``` Terraform, Atlantis, Puppet, Git, NodeJS, Grafana, Puppet, Prometheus, Docker, Cassandra ```
 
-to be implemented: 
- ``` Consul, Packer ```
+to be implemented:     ``` Consul, Packer ```
+ 
 
-### supported clouds :
+## supported clouds :
 
 | cloud | status |
 | ------ | ------ |
@@ -22,8 +22,9 @@ prospects : Digital Ocean, Vsphere , Openstack or any other providers supported 
  
  
  
+ 
 
-### suggested initial architecture GCP
+## suggested initial architecture GCP
 
 ![Image of GCP](https://github.com/dmalicia/dm-terraform/blob/master/docs/dmlc.svg)
 
@@ -35,11 +36,9 @@ https://github.com/dmalicia/dm-terraform/pull/42
 
 In this pull request it would be firing :
 
- > 4 autoscaling for frontend with max 3 nodes each in 4 differente zones
- 
- > 4 autoscaling for backend with max 3 nodes each in 4 differente zones
- 
- > 3 cassandra instances for the cluster
+##### 4 autoscaling for frontend with max 3 nodes each in 4 differente zones
+##### 4 autoscaling for backend with max 3 nodes each in 4 differente zones
+##### 3 cassandra instances for the cluster
 
 The instances will be bootstrapped to puppet that will run these manifests here :
 https://github.com/dmalicia/dm-puppet
@@ -47,7 +46,8 @@ https://github.com/dmalicia/dm-puppet
 The webserver application is docker container running nodejs from this simple app here :
 https://github.com/dmalicia/dm-nodejs
 
-### starting a small cluster for testing
+
+## starting a small cluster for testing
 for testing purpose I will apply a small point of presence with 2 autoscales limited to 2 in different regions to demonstrate the service working,
 the pull request for it is this one :
 https://github.com/dmalicia/dm-terraform/pull/44
@@ -76,7 +76,7 @@ https://dmlc.pw -> 34.129.231.79:443 is the load balancer that deals with the ss
 I enabled CDN on the load balancer so the request should be redirected for the nearest google edge location.
 
 
-### urls/ endpoints of the project :
+## urls/ endpoints of the project :
 
 | type | url | creds | status |
 | ------ | ------ | ------ | ------ |
@@ -109,7 +109,7 @@ The roles are these ones :
 | seed | bastion where everything started |
 
 
-# Expand to other clouds or vmware ( under construction )
+# expand to other clouds or vmware ( under construction )
 To enable other clouds or vsphere we can create a folder in the service with the provider configuration, auths, network info , image and other attributes:
 
 ```├── frontend
@@ -127,7 +127,7 @@ After this when you have the VIP you can add an external endpoint in Google Clou
 The last step necessary would be to create the AWS enpoint in the dmlc.pw so the GCP load-balancer can find and route requests to it.
 
 
-# To do
+# to do
 - Create golden image for bootstrap with Packer
 - Improve firewall and recipes rules in Puppet
 - Finish grafana / prometheus setup
@@ -138,7 +138,7 @@ The last step necessary would be to create the AWS enpoint in the dmlc.pw so the
 - Automate endpoints in GCP load balancer 
 
 
-# References
+# references
 https://github.com/Einsteinish/Docker-Compose-Prometheus-and-Grafana
 https://forge.puppet.com/garethr/docker
 
