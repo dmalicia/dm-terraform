@@ -79,11 +79,6 @@ projects:
     autoplan:
       when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
     workspace: euro
-  - name: cassandra_ocea_nodes
-    dir: cassandra/gcp_nodes
-    autoplan:
-      when_modified: ["../cassandra/gcp_nodes/*.terraform", "../cassandra/bootstrap/*", "*.tf", "*.tfvars"]
-    workspace: ocea 
   - name: cassandra_asia_nodes
     dir: cassandra/gcp_nodes
     autoplan:
