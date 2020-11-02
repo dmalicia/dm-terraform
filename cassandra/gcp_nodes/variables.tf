@@ -63,8 +63,8 @@ variable "regions" {
 variable "nodes" {
   type      = map
   default = {
-    amer = "1"
-    euro = "1"
+    amer = "0"
+    euro = "0"
     asia = "0"
   }
 }
