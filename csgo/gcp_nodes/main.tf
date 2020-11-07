@@ -17,7 +17,7 @@ resource "random_id" "instance_id" {
 
 resource "google_compute_address" "static" {
   count = var.nodes[terraform.workspace]
-  name = "dmlc-csgo-${count.index}${random_id.instance_id.hex}"
+  name = "dmlc-csgos-${count.index}${random_id.instance_id.hex}"
   region = var.regions[terraform.workspace][count.index]
 }
 
