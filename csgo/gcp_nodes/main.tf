@@ -24,7 +24,7 @@ resource "google_compute_address" "static" {
 resource "google_compute_instance" "csgo" {
  count = "${var.nodes[terraform.workspace]}"
  name         = "csgo-${terraform.workspace}-${count.index}"
- machine_type = "f1-micro"
+ machine_type = "e2-medium"
  zone         = var.zones[terraform.workspace][count.index] 
 
  boot_disk {
