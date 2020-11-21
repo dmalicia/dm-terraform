@@ -30,6 +30,7 @@ resource "google_compute_instance" "csgo" {
  boot_disk {
    initialize_params {
      image = "debian-cloud/debian-9"
+     size  = 50
    }
  }
 
