@@ -26,6 +26,7 @@ resource "google_compute_instance" "csgo" {
  name         = "csgo-${terraform.workspace}-${count.index}"
  machine_type = "e2-medium"
  zone         = var.zones[terraform.workspace][count.index] 
+ can_ip_forward = true
 
  boot_disk {
    initialize_params {
