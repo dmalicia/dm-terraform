@@ -20,7 +20,7 @@ START=yes
 EOF
 cat >> /puppet.conf <<EOF
 [agent]
-server = 35.233.219.1
+server = 35.203.32.150
 EOF
 cp /puppet.conf /etc/puppet/puppet.conf
 sudo service puppet restart
