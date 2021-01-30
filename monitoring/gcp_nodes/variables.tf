@@ -24,7 +24,7 @@ variable "storage_class" {
 # Source code folder
 variable "scbootstrap" {
   type       = string
-  default    = "/usr/local/share/dm-terraform/frontend/bootstrap/"
+  default    = "/usr/local/share/dm-terraform/monitoring/bootstrap/"
 }
 
 # Seed Creds
@@ -65,7 +65,7 @@ variable "regions" {
 variable "nodes" {
   type      = map
   default = {
-    amer = "0"
+    amer = "1"
     euro = "0"
     asia = "0"
   }
